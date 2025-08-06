@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -33,16 +32,16 @@
     }
 
     /* Hero */
- .hero img {
-  width: 100%;
-  max-width: 200px;
-  height: 300px; /* أصغر ارتفاع */
-  object-fit: cover;
-  border-radius: 12px;
-  margin: 10px auto 15px;
-  display: block;
-  box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
-}
+    .hero img {
+      width: 100%;
+      max-width: 200px;
+      height: 300px; /* أصغر ارتفاع */
+      object-fit: cover;
+      border-radius: 12px;
+      margin: 10px auto 15px;
+      display: block;
+      box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+    }
 
     section {
       margin: 25px 0;
@@ -169,9 +168,44 @@
       color: #666;
       font-size: 0.8rem;
     }
+
+    /* Language Switcher */
+    #language-switcher {
+      text-align: center;
+      padding: 10px;
+      background: #111;
+      border-bottom: 1px solid #00ff88;
+    }
+    #language-switcher button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin: 0 10px;
+      padding: 0;
+    }
+    #language-switcher img {
+      width: 30px;
+      height: auto;
+      vertical-align: middle;
+      filter: drop-shadow(0 0 1px #000);
+      transition: transform 0.2s;
+    }
+    #language-switcher button:hover img {
+      transform: scale(1.1);
+    }
   </style>
 </head>
 <body>
+
+  <!-- Language Switcher -->
+  <div id="language-switcher">
+    <button onclick="setLanguage('en')" aria-label="English">
+      <img src="https://flagcdn.com/us.svg" alt="English" />
+    </button>
+    <button onclick="setLanguage('es')" aria-label="Español">
+      <img src="https://flagcdn.com/es.svg" alt="Español" />
+    </button>
+  </div>
 
   <div class="container">
     <div class="logo">Win an 800 Roblox Gift Card</div>
@@ -179,7 +213,7 @@
 
     <!-- Hero Section with vertical "TikTok style" image -->
     <div class="hero">
-      <img src="https://i.postimg.cc/nzV0mgtw/100-robux.jpg" />
+      <img src="https://i.postimg.cc/nzV0mgtw/100-robux.jpg" alt="Robux Gift Card" />
     </div>
 
     <section>
@@ -320,5 +354,128 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
   </script>
-</body>
-</html>
+
+  <script>
+    const translations = {
+      en: {
+        logo: "Win an 800 Roblox Gift Card",
+        subtitle: "Your chance to win 800 Robux every Sunday!",
+        winBigTitle: "Win Big This Week!",
+        prize: "800 Roblox Gift Card",
+        winBigText: "Join our weekly Robux giveaway contest and be the next lucky winner! It's free, fast, and open to all Roblox players worldwide.",
+        enterBtn: "Enter Contest Now",
+        whyJoinTitle: "Why Join?",
+        card1Title: "🎁 Free",
+        card1Text: "Join every week without any fees or charges.",
+        card2Title: "🏆 Fair",
+        card2Text: "One winner randomly selected each week.",
+        card3Title: "💎 Instant",
+        card3Text: "Receive 800 Robux in under 48 hours.",
+        card4Title: "🌍 Global",
+        card4Text: "Open to all Roblox players worldwide.",
+        howItWorksTitle: "How It Works",
+        step1Title: "1️⃣ Join",
+        step1Text: "Click the button to be added to the draw list.",
+        step2Title: "2️⃣ Wait",
+        step2Text: "Draws happen every Sunday at 12 PM UTC.",
+        step3Title: "3️⃣ Win",
+        step3Text: "Winner is contacted directly after the draw.",
+        step4Title: "4️⃣ Receive",
+        step4Text: "Get your Robux delivered in less than 48 hours.",
+        nextContestTitle: "Next Contest Starts In:",
+        recentWinnersTitle: "Recent Winners",
+        faqTitle: "FAQ",
+        faq1Q: "📌 Is it free?",
+        faq1A: "Yes, 100% free every week.",
+        faq2Q: "📌 How do I receive Robux?",
+        faq2A: "We transfer them directly to your Roblox account.",
+        faq3Q: "📌 When is the draw?",
+        faq3A: "Every Sunday at 12 PM UTC.",
+        footerText: "© 2025 bouttiq.art - All Rights Reserved",
+        alertEnter: "Contest entry feature will be available soon!",
+      },
+      es: {
+        logo: "Gana una Tarjeta de Regalo Roblox de 800",
+        subtitle: "¡Tu oportunidad de ganar 800 Robux cada domingo!",
+        winBigTitle: "¡Gana a lo Grande esta Semana!",
+        prize: "Tarjeta de Regalo Roblox de 800",
+        winBigText: "¡Únete a nuestro sorteo semanal de Robux y sé el próximo ganador afortunado! Es gratis, rápido y abierto a todos los jugadores de Roblox en todo el mundo.",
+        enterBtn: "Participar Ahora",
+        whyJoinTitle: "¿Por qué Unirse?",
+        card1Title: "🎁 Gratis",
+        card1Text: "Participa cada semana sin tarifas ni cargos.",
+        card2Title: "🏆 Justo",
+        card2Text: "Un ganador seleccionado al azar cada semana.",
+        card3Title: "💎 Instantáneo",
+        card3Text: "Recibe 800 Robux en menos de 48 horas.",
+        card4Title: "🌍 Global",
+        card4Text: "Abierto a todos los jugadores de Roblox en todo el mundo.",
+        howItWorksTitle: "Cómo Funciona",
+        step1Title: "1️⃣ Únete",
+        step1Text: "Haz clic en el botón para ser añadido a la lista del sorteo.",
+        step2Title: "2️⃣ Espera",
+        step2Text: "Los sorteos se realizan cada domingo a las 12 PM UTC.",
+        step3Title: "3️⃣ Gana",
+        step3Text: "El ganador es contactado directamente después del sorteo.",
+        step4Title: "4️⃣ Recibe",
+        step4Text: "Recibe tus Robux en menos de 48 horas.",
+        nextContestTitle: "El Próximo Concurso Comienza En:",
+        recentWinnersTitle: "Ganadores Recientes",
+        faqTitle: "Preguntas Frecuentes",
+        faq1Q: "📌 ¿Es gratis?",
+        faq1A: "Sí, 100% gratis cada semana.",
+        faq2Q: "📌 ¿Cómo recibo los Robux?",
+        faq2A: "Los transferimos directamente a tu cuenta de Roblox.",
+        faq3Q: "📌 ¿Cuándo es el sorteo?",
+        faq3A: "Cada domingo a las 12 PM UTC.",
+        footerText: "© 2025 bouttiq.art - Todos los derechos reservados",
+        alertEnter: "¡La función de inscripción al concurso estará disponible pronto!",
+      }
+    };
+
+    function setLanguage(lang) {
+      const t = translations[lang];
+      if (!t) return;
+
+      document.querySelector('.logo').textContent = t.logo;
+      document.querySelector('.subtitle').textContent = t.subtitle;
+
+      document.querySelector('section:nth-of-type(1) h2').textContent = t.winBigTitle;
+      document.querySelector('.prize').textContent = t.prize;
+      document.querySelector('section:nth-of-type(1) p').textContent = t.winBigText;
+      document.querySelector('section:nth-of-type(1) .cta').textContent = t.enterBtn;
+
+      document.querySelector('section:nth-of-type(2) h2').textContent = t.whyJoinTitle;
+
+      const whyCards = document.querySelectorAll('section:nth-of-type(2) .card');
+whyCards[0].querySelector('h3').textContent = t.card1Title;
+whyCards[0].querySelector('p').textContent = t.card1Text;
+whyCards[1].querySelector('h3').textContent = t.card2Title;
+whyCards[1].querySelector('p').textContent = t.card2Text;
+whyCards[2].querySelector('h3').textContent = t.card3Title;
+whyCards[2].querySelector('p').textContent = t.card3Text;
+whyCards[3].querySelector('h3').textContent = t.card4Title;
+whyCards[3].querySelector('p').textContent = t.card4Text;   document.querySelector('section:nth-of-type(3) h2').textContent = t.howItWorksTitle;
+  const howCards = document.querySelectorAll('section:nth-of-type(3) .card');
+  howCards[0].querySelector('h3').textContent = t.step1Title;
+  howCards[0].querySelector('p').textContent = t.step1Text;
+  howCards[1].querySelector('h3').textContent = t.step2Title;
+  howCards[1].querySelector('p').textContent = t.step2Text;
+  howCards[2].querySelector('h3').textContent = t.step3Title;
+  howCards[2].querySelector('p').textContent = t.step3Text;
+  howCards[3].querySelector('h3').textContent = t.step4Title;
+  howCards[3].querySelector('p').textContent = t.step4Text;
+
+  document.querySelector('section:nth-of-type(4) h2').textContent = t.nextContestTitle;
+  document.querySelector('section:nth-of-type(6) h2').textContent = t.faqTitle;
+  document.querySelector('section:nth-of-type(6) .faq-item:nth-of-type(1) h4').textContent = t.faq1Q;
+  document.querySelector('section:nth-of-type(6) .faq-item:nth-of-type(1) p').textContent = t.faq1A;
+  document.querySelector('section:nth-of-type(6) .faq-item:nth-of-type(2) h4').textContent = t.faq2Q;
+  document.querySelector('section:nth-of-type(6) .faq-item:nth-of-type(2) p').textContent = t.faq2A;
+  document.querySelector('section:nth-of-type(6) .faq-item:nth-of-type(3) h4').textContent = t.faq3Q;
+  document.querySelector('section:nth-of-type(6) .faq-item:nth-of-type(3) p').textContent = t.faq3A;
+
+  document.querySelector('footer').textContent = t.footerText;
+
+  document.querySelector('section:nth-of-type(1) .cta').setAttribute('onclick', alert('${t.alertEnter}'));
+}
