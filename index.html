@@ -3,54 +3,142 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Professional Landing Page</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Weekly Robux Giveaway Contest</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+      color: #fff;
+      line-height: 1.6;
+    }
+    .container { max-width: 1100px; margin: auto; padding: 20px; text-align: center; }
+    .logo { font-size: 2.5rem; font-weight: bold; color: #00ff88; margin-bottom: 10px; }
+    .subtitle { color: #ccc; margin-bottom: 30px; font-size: 1.2rem; }
+
+    /* Sections */
+    section { margin: 60px 0; padding: 40px 20px; border-radius: 15px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); }
+    h2 { font-size: 2rem; margin-bottom: 20px; }
+    p { color: #ccc; }
+
+    /* Prize */
+    .prize { font-size: 3rem; font-weight: 800; color: #00ff88; margin: 20px 0; }
+
+    /* Features grid */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+    .card { background: rgba(255,255,255,0.03); padding: 20px; border-radius: 10px; border: 1px solid rgba(0,255,136,0.1); }
+    .card h3 { color: #fff; margin-bottom: 10px; }
+
+    /* Countdown */
+    .countdown { display: flex; justify-content: center; gap: 15px; }
+    .time-box { background: rgba(0,255,136,0.05); padding: 15px; border-radius: 10px; border: 1px solid rgba(0,255,136,0.2); width: 70px; }
+    .time-box span { display: block; font-size: 1.8rem; color: #00ff88; font-weight: 700; }
+    .time-box small { font-size: 0.8rem; color: #aaa; }
+
+    /* Button */
+    .cta { background: linear-gradient(135deg, #00ff88, #00e676); color: #000; padding: 18px 40px; border: none; border-radius: 40px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 30px; }
+    .cta:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,255,136,0.4); }
+
+    /* Winners */
+    .winners img { width: 70px; height: 70px; border-radius: 50%; margin-bottom: 10px; }
+    .winner-card { text-align: center; padding: 15px; }
+
+    /* FAQ */
+    .faq-item { text-align: left; margin-bottom: 15px; }
+    .faq-item h4 { color: #00ff88; margin-bottom: 5px; }
+
+    footer { margin: 50px 0 20px; color: #666; font-size: 0.9rem; }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
 
-  <!-- Hero Section -->
-  <section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
-    <h1 class="text-5xl font-bold mb-4">Win 800 Robux Every Week!</h1>
-    <p class="text-lg text-gray-600 mb-6">
-      Join our weekly giveaway and get a chance to win free Robux every Sunday.
-    </p>
-    <a href="#signup" class="bg-blue-600 text-white px-6 py-3 rounded-lg text-lg shadow hover:bg-blue-700 transition">
-      Join Now – It's Free
-    </a>
-  </section>
+  <div class="container">
+    <div class="logo">ROBUX GIVEAWAY</div>
+    <div class="subtitle">Your chance to win 800 Robux every Sunday!</div>
 
-  <!-- Features -->
-  <section class="py-20 px-6 grid md:grid-cols-3 gap-8 text-center bg-white">
-    <div>
-      <h3 class="text-xl font-semibold mb-2">🎮 Play & Win</h3>
-      <p>Participate easily without complex rules. Just join and wait for the draw.</p>
-    </div>
-    <div>
-      <h3 class="text-xl font-semibold mb-2">💰 800 Robux Prize</h3>
-      <p>Every Sunday, we choose a winner who receives free Robux instantly.</p>
-    </div>
-    <div>
-      <h3 class="text-xl font-semibold mb-2">📩 Quick Signup</h3>
-      <p>Just enter your email – no payment required for free giveaways.</p>
-    </div>
-  </section>
+    <!-- Hero Section -->
+    <section>
+      <h2>Win Big This Week!</h2>
+      <div class="prize">800 R$</div>
+      <p>Join our exclusive weekly Robux giveaway contest! Every week, one lucky player wins premium Robux to boost their Roblox experience. It's free, easy, and open to everyone.</p>
+      <button class="cta" onclick="alert('Contest entry feature will be available soon!')">Enter Contest Now</button>
+    </section>
 
-  <!-- Signup Form -->
-  <section id="signup" class="py-20 text-center bg-gray-100">
-    <h2 class="text-3xl font-bold mb-4">Enter Your Email to Join</h2>
-    <form action="https://formspree.io/f/your-form-id" method="POST" class="max-w-md mx-auto">
-      <input type="email" name="email" required placeholder="Your email address"
-             class="w-full p-3 border border-gray-300 rounded-lg mb-4">
-      <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700">
-        Join Giveaway
-      </button>
-    </form>
-  </section>
+    <!-- Why Join -->
+    <section>
+      <h2>Why Join Our Giveaway?</h2>
+      <div class="grid">
+        <div class="card"><h3>🎁 Free to Join</h3><p>No hidden fees. Your chance to win Robux is 100% free every week.</p></div>
+        <div class="card"><h3>🏆 Fair & Transparent</h3><p>One verified winner every Sunday, selected randomly and announced publicly.</p></div>
+        <div class="card"><h3>💎 Real Rewards</h3><p>Instant delivery of 800 Robux directly to your Roblox account.</p></div>
+      </div>
+    </section>
 
-  <!-- Footer -->
-  <footer class="py-6 text-center bg-gray-200">
-    <p>&copy; 2025 Weekly Giveaway. All rights reserved.</p>
-  </footer>
+    <!-- How it Works -->
+    <section>
+      <h2>How It Works</h2>
+      <div class="grid">
+        <div class="card"><h3>1️⃣ Participate</h3><p>Click the join button to be included in the weekly draw.</p></div>
+        <div class="card"><h3>2️⃣ Wait for Draw</h3><p>Every Sunday, we randomly pick one lucky winner.</p></div>
+        <div class="card"><h3>3️⃣ Claim Prize</h3><p>Winner receives 800 Robux within 48 hours after the draw.</p></div>
+      </div>
+    </section>
+
+    <!-- Countdown -->
+    <section>
+      <h2>Next Contest Starts In:</h2>
+      <div class="countdown">
+        <div class="time-box"><span id="days">0</span><small>Days</small></div>
+        <div class="time-box"><span id="hours">0</span><small>Hours</small></div>
+        <div class="time-box"><span id="minutes">0</span><small>Minutes</small></div>
+        <div class="time-box"><span id="seconds">0</span><small>Seconds</small></div>
+      </div>
+    </section>
+
+    <!-- Winners -->
+    <section>
+      <h2>Recent Winners</h2>
+      <div class="grid winners">
+        <div class="winner-card"><img src="https://i.postimg.cc/pLSkqHZL/user1.jpg"><p><strong>@AlexRblx</strong><br>Winner of last week</p></div>
+        <div class="winner-card"><img src="https://i.postimg.cc/28NyZfW2/user2.jpg"><p><strong>@Mia_Gamer</strong><br>Winner 2 weeks ago</p></div>
+        <div class="winner-card"><img src="https://i.postimg.cc/8k1tR3nd/user3.jpg"><p><strong>@LeoPlayz</strong><br>Winner 3 weeks ago</p></div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item"><h4>📌 Is it really free?</h4><p>Yes! Joining our weekly giveaway is completely free for all Roblox players.</p></div>
+      <div class="faq-item"><h4>📌 When is the winner announced?</h4><p>Every Sunday at 12:00 PM UTC, we select and announce the winner.</p></div>
+      <div class="faq-item"><h4>📌 How do I receive my Robux?</h4><p>We send the Robux directly to your Roblox account within 48 hours of winning.</p></div>
+    </section>
+
+    <footer>
+      &copy; 2025 bouttiq.art - All Rights Reserved
+    </footer>
+  </div>
+
+  <script>
+    function updateCountdown() {
+      const now = new Date();
+      const nextSunday = new Date();
+      const day = now.getDay();
+      const diff = day === 0 && now.getUTCHours() < 12 ? 0 : 7 - day;
+      nextSunday.setDate(now.getDate() + diff);
+      nextSunday.setUTCHours(12, 0, 0, 0);
+      const timeLeft = nextSunday - now;
+      const days = Math.floor(timeLeft / (1000*60*60*24));
+      const hours = Math.floor((timeLeft % (1000*60*60*24)) / (1000*60*60));
+      const minutes = Math.floor((timeLeft % (1000*60*60)) / (1000*60));
+      const seconds = Math.floor((timeLeft % (1000*60)) / 1000);
+      document.getElementById('days').textContent = days.toString().padStart(2,'0');
+      document.getElementById('hours').textContent = hours.toString().padStart(2,'0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2,'0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2,'0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
 
 </body>
 </html>
