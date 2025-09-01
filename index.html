@@ -1,261 +1,230 @@
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QFYKG5YNBE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-  gtag('config', 'G-QFYKG5YNBE');
-</script>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Weekly Robux Giveaway Contest</title>
-  <style>
-    * {margin:0;padding:0;box-sizing:border-box;}
-    body {font-family:'Inter',sans-serif;background:#000;color:#fff;line-height:1.5;}
-    .container {max-width:1100px;margin:auto;padding:15px;text-align:center;}
-    .logo {font-size:2rem;font-weight:bold;color:#00ff88;}
-    .subtitle {color:#ccc;margin:5px 0 15px;font-size:1rem;}
-    .hero img {width:100%;max-width:200px;height:300px;object-fit:cover;border-radius:12px;margin:10px auto;display:block;box-shadow:0 10px 25px rgba(0,255,136,0.3);}
-    section {margin:25px 0;padding:20px 10px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);}
-    h2 {font-size:1.4rem;margin-bottom:10px;}
-    p {color:#ccc;font-size:0.95rem;}
-    .prize {font-size:2rem;font-weight:800;color:#00ff88;margin:10px 0;}
-    .grid {display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px;}
-    @media(min-width:768px){.grid{grid-template-columns:repeat(4,1fr);}}
-    .card {background:rgba(255,255,255,0.03);padding:10px;border-radius:8px;border:1px solid rgba(0,255,136,0.1);}
-    .card h3 {color:#fff;font-size:1rem;margin-bottom:5px;}
-    .card p {font-size:0.85rem;}
-    .countdown {display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
-    .time-box {background:rgba(0,255,136,0.05);padding:10px;border-radius:8px;border:1px solid rgba(0,255,136,0.2);width:60px;}
-    .time-box span {display:block;font-size:1.4rem;color:#00ff88;font-weight:700;}
-    .time-box small {font-size:0.7rem;color:#aaa;}
-    .cta {background:linear-gradient(135deg,#00ff88,#00e676);color:#000;padding:12px 25px;border:none;border-radius:25px;font-size:1rem;font-weight:bold;cursor:pointer;transition:0.3s;margin-top:10px;}
-    .cta:hover {transform:translateY(-2px);box-shadow:0 6px 15px rgba(0,255,136,0.4);}
-    .winners img {width:60px;height:60px;border-radius:50%;margin-bottom:5px;}
-    .winner-card {text-align:center;padding:5px;font-size:0.8rem;}
-    .faq-item {text-align:left;margin-bottom:10px;}
-    .faq-item h4 {color:#00ff88;margin-bottom:3px;font-size:0.9rem;}
-    .faq-item p {font-size:0.85rem;}
-    footer {margin:20px 0;color:#666;font-size:0.8rem;}
-    #language-switcher {text-align:center;padding:10px;background:#111;border-bottom:1px solid #00ff88;}
-    #language-switcher button {background:none;border:none;cursor:pointer;margin:0 10px;}
-    #language-switcher img {width:30px;height:auto;vertical-align:middle;transition:transform 0.2s;}
-    #language-switcher button:hover img {transform:scale(1.1);}
-  </style>
-</head>
-<body>
+:root {
+    --background-color: #121212;
+    --surface-color: #1e1e1e;
+    --primary-color: #03dac6;
+    --text-color: #ffffff;
+    --text-secondary-color: #b3b3b3;
+}
 
-  <!-- Language Switcher -->
-  <div id="language-switcher">
-    <button onclick="setLanguage('en')" aria-label="English"><img src="https://flagcdn.com/us.svg" alt="English"></button>
-    <button onclick="setLanguage('es')" aria-label="Español"><img src="https://flagcdn.com/es.svg" alt="Español"></button>
-  </div>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-  <div class="container">
-    <div class="logo">Win an 800 Roblox Gift Card</div>
-    <div class="subtitle">Your chance to win 800 Robux every Sunday!</div>
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
 
-    <div class="hero"><img src="https://i.postimg.cc/nzV0mgtw/100-robux.jpg" alt="Robux Gift Card"></div>
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-    <section>
-      <h2>Win Big This Week!</h2>
-      <div class="prize">800 Roblox Gift Card</div>
-      <p>Join our weekly Robux giveaway contest and be the next lucky winner! It's free, fast, and open to all Roblox players worldwide.</p>
-      <button id="enterBtn" class="cta">Enter Contest Now</button>
-    </section>
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(45deg, #1e132a, #121212, #1a222f);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+}
 
-    <section>
-      <h2>Why Join?</h2>
-      <div class="grid">
-        <div class="card"><h3>🎁 Free</h3><p>Join every week without any fees or charges.</p></div>
-        <div class="card"><h3>🏆 Fair</h3><p>One winner randomly selected each week.</p></div>
-        <div class="card"><h3>💎 Instant</h3><p>Receive 800 Robux in under 48 hours.</p></div>
-        <div class="card"><h3>🌍 Global</h3><p>Open to all Roblox players worldwide.</p></div>
-      </div>
-    </section>
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-    <section>
-      <h2>How It Works</h2>
-      <div class="grid">
-        <div class="card"><h3>1️⃣ Join</h3><p>Click the button to be added to the draw list.</p></div>
-        <div class="card"><h3>2️⃣ Wait</h3><p>Draws happen every Sunday at 12 PM UTC.</p></div>
-        <div class="card"><h3>3️⃣ Win</h3><p>Winner is contacted directly after the draw.</p></div>
-        <div class="card"><h3>4️⃣ Receive</h3><p>Get your Robux delivered in less than 48 hours.</p></div>
-      </div>
-    </section>
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
 
-    <section>
-      <h2>Next Contest Starts In:</h2>
-      <div class="countdown">
-        <div class="time-box"><span id="days">00</span><small>Days</small></div>
-        <div class="time-box"><span id="hours">00</span><small>Hours</small></div>
-        <div class="time-box"><span id="minutes">00</span><small>Minutes</small></div>
-        <div class="time-box"><span id="seconds">00</span><small>Seconds</small></div>
-      </div>
-    </section>
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
 
-    <section>
-      <h2>Recent Winners</h2>
-      <div class="grid winners">
-        <div class="winner-card"><img src="https://i.postimg.cc/hhFV0tvn/alex.jpg" alt="Winner alex"><p>@alex</p></div>
-        <div class="winner-card"><img src="https://i.postimg.cc/pX8SM9DD/mia-gamer75.jpg" alt="Winner mia_gamer75"><p>@mia_gamer75</p></div>
-        <div class="winner-card"><img src="https://i.postimg.cc/T3JHhZN1/leoplayzzz.jpg" alt="Winner leoplayzzz"><p>@leoplayzzz</p></div>
-        <div class="winner-card"><img src="https://i.postimg.cc/d1p5zv3H/sofia12all.jpg" alt="Winner sofia12all"><p>@sofia12all</p></div>
-      </div>
-    </section>
+.logo i {
+    color: var(--primary-color);
+    margin-right: 8px;
+}
 
-    <section>
-      <h2>FAQ</h2>
-      <div class="faq-item"><h4>📌 Is it free?</h4><p>Yes, 100% free every week.</p></div>
-      <div class="faq-item"><h4>📌 How do I receive Robux?</h4><p>We transfer them directly to your Roblox account.</p></div>
-      <div class="faq-item"><h4>📌 When is the draw?</h4><p>Every Sunday at 12 PM UTC.</p></div>
-    </section>
+.search-bar {
+    background-color: var(--surface-color);
+    padding: 10px 15px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+}
 
-    <footer>© 2025 bouttiq.art - All Rights Reserved</footer>
-  </div>
+.search-bar input {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    margin-right: 10px;
+}
 
-  <script>
-    function updateCountdown(){
-      const now = new Date();
-      const nextSunday = new Date();
-      const day = now.getUTCDay();
-      const diff = (day === 0 && now.getUTCHours() < 12) ? 0 : 7 - day;
-      nextSunday.setDate(now.getDate() + diff);
-      nextSunday.setUTCHours(12,0,0,0);
-      const timeLeft = nextSunday - now;
-      const days = Math.floor(timeLeft/(1000*60*60*24));
-      const hours = Math.floor((timeLeft%(1000*60*60*24))/(1000*60*60));
-      const minutes = Math.floor((timeLeft%(1000*60*60))/(1000*60));
-      const seconds = Math.floor((timeLeft%(1000*60))/1000);
-      document.getElementById('days').textContent = String(days).padStart(2,'0');
-      document.getElementById('hours').textContent = String(hours).padStart(2,'0');
-      document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
-      document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
-    }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+.search-bar i {
+    color: var(--text-secondary-color);
+}
 
-    // تحميل سكربت القفل مباشرة عند الضغط
-    document.getElementById('enterBtn').addEventListener('click', function() {
-      if (!document.getElementById('ogjs')) {
-        var script = document.createElement('script');
-        script.src = "https://locker.bouttiq.art/cl/js/mejr88";
-        script.id = "ogjs";
-        document.head.appendChild(script);
-      }
-    });
+.hero {
+    text-align: center;
+    padding: 60px 0;
+}
 
-    // اللغة (English & Spanish)
-    const translations = {
-      en: {
-        logo:"Win an 800 Roblox Gift Card",
-        subtitle:"Your chance to win 800 Robux every Sunday!",
-        winBigTitle:"Win Big This Week!",
-        prize:"800 Roblox Gift Card",
-        winBigText:"Join our weekly Robux giveaway contest and be the next lucky winner! It's free, fast, and open to all Roblox players worldwide.",
-        enterBtn:"Enter Contest Now",
-        whyJoinTitle:"Why Join?",
-        card1Title:"🎁 Free",
-        card1Text:"Join every week without any fees or charges.",
-        card2Title:"🏆 Fair",
-        card2Text:"One winner randomly selected each week.",
-        card3Title:"💎 Instant",
-        card3Text:"Receive 800 Robux in under 48 hours.",
-        card4Title:"🌍 Global",
-        card4Text:"Open to all Roblox players worldwide.",
-        howItWorksTitle:"How It Works",
-        step1Title:"1️⃣ Join",
-        step1Text:"Click the button to be added to the draw list.",
-        step2Title:"2️⃣ Wait",
-        step2Text:"Draws happen every Sunday at 12 PM UTC.",
-        step3Title:"3️⃣ Win",
-        step3Text:"Winner is contacted directly after the draw.",
-        step4Title:"4️⃣ Receive",
-        step4Text:"Get your Robux delivered in less than 48 hours.",
-        nextContestTitle:"Next Contest Starts In:",
-        faqTitle:"FAQ",
-        faq1Q:"📌 Is it free?",
-        faq1A:"Yes, 100% free every week.",
-        faq2Q:"📌 How do I receive Robux?",
-        faq2A:"We transfer them directly to your Roblox account.",
-        faq3Q:"📌 When is the draw?",
-        faq3A:"Every Sunday at 12 PM UTC.",
-        footerText:"© 2025 bouttiq.art - All Rights Reserved",
-        alertEnter:"Contest entry feature will be available soon!"
-      },
-      es: {
-        logo:"Gana una Tarjeta de Regalo Roblox de 800",
-        subtitle:"¡Tu oportunidad de ganar 800 Robux cada domingo!",
-        winBigTitle:"¡Gana a lo Grande esta Semana!",
-        prize:"Tarjeta de Regalo Roblox de 800",
-        winBigText:"¡Únete a nuestro sorteo semanal de Robux y sé el próximo ganador afortunado! Es gratis, rápido y abierto a todos los jugadores de Roblox en todo el mundo.",
-        enterBtn:"Participar Ahora",
-        whyJoinTitle:"¿Por qué Unirse?",
-        card1Title:"🎁 Gratis",
-        card1Text:"Participa cada semana sin tarifas ni cargos.",
-        card2Title:"🏆 Justo",
-        card2Text:"Un ganador seleccionado al azar cada semana.",
-        card3Title:"💎 Instantáneo",
-        card3Text:"Recibe 800 Robux en menos de 48 horas.",
-        card4Title:"🌍 Global",
-        card4Text:"Abierto a todos los jugadores de Roblox en todo el mundo.",
-        howItWorksTitle:"Cómo Funciona",
-        step1Title:"1️⃣ Únete",
-        step1Text:"Haz clic en el botón para ser añadido a la lista del sorteo.",
-        step2Title:"2️⃣ Espera",
-        step2Text:"Los sorteos se realizan cada domingo a las 12 PM UTC.",
-        step3Title:"3️⃣ Gana",
-        step3Text:"El ganador es contactado directamente después del sorteo.",
-        step4Title:"4️⃣ Recibe",
-        step4Text:"Recibe tus Robux en menos de 48 horas.",
-        nextContestTitle:"El Próximo Concurso Comienza En:",
-        faqTitle:"Preguntas Frecuentes",
-        faq1Q:"📌 ¿Es gratis?",
-        faq1A:"Sí, 100% gratis cada semana.",
-        faq2Q:"📌 ¿Cómo recibo los Robux?",
-        faq2A:"Los transferimos directamente a tu cuenta de Roblox.",
-        faq3Q:"📌 ¿Cuándo es el sorteo?",
-        faq3A:"Cada domingo a las 12 PM UTC.",
-        footerText:"© 2025 bouttiq.art - Todos los derechos reservados",
-        alertEnter:"¡La función de inscripción al concurso estará disponible pronto!"
-      }
-    };
+.hero h1 {
+    font-size: 3rem;
+}
 
-    function setLanguage(lang){
-      const t = translations[lang];
-      if(!t) return;
-      document.querySelector('.logo').textContent = t.logo;
-      document.querySelector('.subtitle').textContent = t.subtitle;
-      document.querySelector('section:nth-of-type(1) h2').textContent = t.winBigTitle;
-      document.querySelector('.prize').textContent = t.prize;
-      document.querySelector('section:nth-of-type(1) p').textContent = t.winBigText;
-      document.querySelector('section:nth-of-type(1) .cta').textContent = t.enterBtn;
-      document.querySelector('section:nth-of-type(2) h2').textContent = t.whyJoinTitle;
-      const why = document.querySelectorAll('section:nth-of-type(2) .card');
-      why[0].querySelector('h3').textContent = t.card1Title; why[0].querySelector('p').textContent = t.card1Text;
-      why[1].querySelector('h3').textContent = t.card2Title; why[1].querySelector('p').textContent = t.card2Text;
-      why[2].querySelector('h3').textContent = t.card3Title; why[2].querySelector('p').textContent = t.card3Text;
-      why[3].querySelector('h3').textContent = t.card4Title; why[3].querySelector('p').textContent = t.card4Text;
-      document.querySelector('section:nth-of-type(3) h2').textContent = t.howItWorksTitle;
-      const how = document.querySelectorAll('section:nth-of-type(3) .card');
-      how[0].querySelector('h3').textContent = t.step1Title; how[0].querySelector('p').textContent = t.step1Text;
-      how[1].querySelector('h3').textContent = t.step2Title; how[1].querySelector('p').textContent = t.step2Text;
-      how[2].querySelector('h3').textContent = t.step3Title; how[2].querySelector('p').textContent = t.step3Text;
-      how[3].querySelector('h3').textContent = t.step4Title; how[3].querySelector('p').textContent = t.step4Text;
-      document.querySelector('section:nth-of-type(4) h2').textContent = t.nextContestTitle;
-      document.querySelector('section:nth-of-type(6) h2').textContent = t.faqTitle;
-      document.querySelector('section:nth-of-type(6) .faq-item:nth-of-type(1) h4').textContent = t.faq1Q;
-      document.querySelector('section:nth-of-type(6) .faq-item:nth-of-type(1) p').textContent = t.faq1A;
-      document.querySelector('section:nth-of-type(6) .faq-item:nth-of-type(2) h4').textContent = t.faq2Q;
-      document.querySelector('section:nth-of-type(6) .faq-item:nth-of-type(2) p').textContent = t.faq2A;
-      document.querySelector('section:nth-of-type(6) .faq-item:nth-of-type(3) h4').textContent = t.faq3Q;
-      document.querySelector('section:nth-of-type(6) .faq-item:nth-of-type(3) p').textContent = t.faq3A;
-      document.querySelector('footer').textContent = t.footerText;
-    }
-  </script>
-</body>
-</html>
+.hero p {
+    font-size: 1.1rem;
+    color: var(--text-secondary-color);
+    margin-top: 10px;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 25px;
+    padding: 40px 0;
+}
+
+.card {
+    background-color: var(--surface-color);
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #333;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 15px var(--primary-color);
+}
+
+.card img {
+    max-width: 80%;
+    max-height: 50px;
+    filter: invert(1);
+}
+.card[data-card="amazon"] img,
+.card[data-card="roblox"] img {
+    filter: none;
+}
+
+
+.trust-badges {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.badge {
+    color: var(--text-secondary-color);
+}
+
+.badge i {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Modal (Content Locker) Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: var(--surface-color);
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.8rem;
+    color: var(--text-secondary-color);
+    cursor: pointer;
+}
+
+#modal-body h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+#modal-body p {
+    text-align: center;
+    color: var(--text-secondary-color);
+    margin-bottom: 25px;
+}
+.content-locker-placeholder {
+    background-color: #111;
+    border: 2px dashed #333;
+    padding: 40px;
+    text-align: center;
+    border-radius: 10px;
+    color: #666;
+}
+
+/* Footer Styles (The Simple & Stable Version) */
+footer {
+    padding: 40px 0 20px 0; /* مسافة من المحتوى اللي فوقه */
+}
+
+footer p {
+    text-align: center; /* يضمن التوسيط */
+    color: var(--text-secondary-color);
+    font-size: 0.9rem;
+}
