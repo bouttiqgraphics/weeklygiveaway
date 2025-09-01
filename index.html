@@ -1,89 +1,348 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Gift Card Store</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <title>Gift Cards & Giveaways</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+        :root {
+            --background-color: #121212;
+            --surface-color: #1e1e1e;
+            --primary-color: #03dac6;
+            --text-color: #ffffff;
+            --text-secondary-color: #b3b3b3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #1e132a, #121212, #1a222f);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            color: var(--primary-color);
+            margin-right: 8px;
+        }
+
+        .search-bar {
+            background-color: var(--surface-color);
+            padding: 10px 15px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            outline: none;
+            margin-right: 10px;
+        }
+
+        .search-bar i {
+            color: var(--text-secondary-color);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary-color);
+            margin-top: 10px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 25px;
+            padding: 40px 0;
+        }
+
+        .card {
+            background-color: var(--surface-color);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #333;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 15px var(--primary-color);
+        }
+
+        .card img {
+            max-width: 80%;
+            max-height: 50px;
+            filter: invert(1);
+        }
+        .card[data-card="amazon"] img,
+        .card[data-card="roblox"] img {
+            filter: none;
+        }
+
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .badge {
+            color: var(--text-secondary-color);
+        }
+
+        .badge i {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Modal (Content Locker) Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--surface-color);
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.8rem;
+            color: var(--text-secondary-color);
+            cursor: pointer;
+        }
+
+        #modal-body h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        #modal-body p {
+            text-align: center;
+            color: var(--text-secondary-color);
+            margin-bottom: 25px;
+        }
+        .content-locker-placeholder {
+            background-color: #111;
+            border: 2px dashed #333;
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px;
+            color: #666;
+        }
+
+        /* Footer Styles (The Simple & Stable Version) */
+        footer {
+            padding: 40px 0 20px 0; /* مسافة من المحتوى اللي فوقه */
+        }
+
+        footer p {
+            text-align: center; /* يضمن التوسيط */
+            color: var(--text-secondary-color);
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
-
     <div class="background-animation"></div>
 
     <div class="container">
         <header>
             <div class="logo">
-                <i class="fa-solid fa-star"></i>
-                <span>Premium Cards</span>
+                <i class="fas fa-gift"></i>
+                Giveaway Hub
             </div>
             <div class="search-bar">
-                <input type="text" placeholder="Search for a card...">
-                <i class="fa-solid fa-search"></i>
+                <input type="text" placeholder="Search for a gift card...">
+                <i class="fas fa-search"></i>
             </div>
         </header>
 
         <main>
-            <section class="hero">
-                <h1>The Ultimate Gifting Experience</h1>
-                <p>Get your favorite gift cards instantly and securely</p>
-            </section>
+            <div class="hero">
+                <h1>Win Your Favorite Gift Card Today!</h1>
+                <p>Choose your card and complete a simple offer to get started.</p>
+            </div>
 
-            <section class="cards-grid">
+            <div class="cards-grid">
                 <div class="card" data-card="roblox">
-                    <img src="https://www.freepnglogos.com/uploads/roblox-logo-png/roblox-logo-white-roblox-logo-29.png" alt="Roblox" style="max-height: 35px;">
+                    <img src="http://googleusercontent.com/image_generation_content/14" alt="Roblox Gift Card">
                 </div>
                 <div class="card" data-card="amazon">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
-                </div>
-                <div class="card" data-card="steam">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam">
-                </div>
-                <div class="card" data-card="playstation">
-                    <img src="https://logolook.net/wp-content/uploads/2021/11/PlayStation-Logo-2009.png" alt="PlayStation">
-                </div>
-                <div class="card" data-card="xbox">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Xbox_one_logo.svg" alt="Xbox">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Gift Card">
                 </div>
                 <div class="card" data-card="apple">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black_rgb.svg" alt="Apple Gift Card">
                 </div>
-            </section>
+                <div class="card" data-card="xbox">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Xbox_one_logo.svg" alt="Xbox Gift Card">
+                </div>
+                <div class="card" data-card="playstation">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/PlayStation_5_logo.svg" alt="PlayStation Gift Card">
+                </div>
+                <div class="card" data-card="steam">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/2048px-Steam_icon_logo.svg.png" alt="Steam Gift Card">
+                </div>
+                <div class="card" data-card="google-play">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Google_Play_logo.svg" alt="Google Play Gift Card">
+                </div>
+                <div class="card" data-card="visa">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Visa Gift Card">
+                </div>
+            </div>
 
-            <section class="trust-badges">
+            <div class="trust-badges">
                 <div class="badge">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    <span>Secure Payment</span>
+                    <i class="fas fa-lock"></i>
+                    Secure
                 </div>
                 <div class="badge">
-                    <i class="fa-solid fa-bolt"></i>
-                    <span>Instant Delivery</span>
+                    <i class="fas fa-users"></i>
+                    Trusted by 500K+
                 </div>
                 <div class="badge">
-                    <i class="fa-solid fa-gem"></i>
-                    <span>Official Retailer</span>
+                    <i class="fas fa-check-circle"></i>
+                    100% Free
                 </div>
-            </section>
+            </div>
         </main>
+        
+        <footer>
+            <p>&copy; 2024 Giveaway Hub. All rights reserved.</p>
+        </footer>
     </div>
 
-    <div id="modal-locker" class="modal-overlay">
+    <div class="modal-overlay">
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <div id="modal-body">
-                <h2 id="modal-title">Special Offer</h2>
-                <p>To continue, please complete the following offer.</p>
+                <h2>Almost There!</h2>
+                <p>Complete a quick offer below to unlock your gift card.</p>
                 <div class="content-locker-placeholder">
-                   [ ضع كود جافا سكربت الخاص بـ AdBlue Media هنا ]
+                    <p>Your content locker goes here!</p>
+                    <p>Integrate your locker script or code here from your ad network.</p>
                 </div>
             </div>
         </div>
     </div>
-    
-    <footer>
-        <p>Copyright &copy; 2025 Ahmed M. Sawan All Rights Reserved.</p>
-    </footer>
 
-    <script src="script.js"></script>
+    <script>
+        const cards = document.querySelectorAll('.card');
+        const modalOverlay = document.querySelector('.modal-overlay');
+        const closeButton = document.querySelector('.close-button');
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                modalOverlay.classList.add('active');
+            });
+        });
+
+        closeButton.addEventListener('click', () => {
+            modalOverlay.classList.remove('active');
+        });
+
+        modalOverlay.addEventListener('click', (event) => {
+            if (event.target === modalOverlay) {
+                modalOverlay.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
