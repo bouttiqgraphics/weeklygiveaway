@@ -257,6 +257,14 @@
             color: var(--text-secondary-color);
             font-size: 0.9rem;
         }
+
+        /* Media query for phones to show 2 cards per line */
+        @media (max-width: 600px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
     </style>
 </head>
 <body>
