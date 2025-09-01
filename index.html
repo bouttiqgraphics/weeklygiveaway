@@ -131,14 +131,14 @@
             border-radius: 15px;
             padding: 20px;
             display: flex;
-            flex-direction: column; /* Changed to column to stack elements */
-            justify-content: space-between; /* Pushes image to top, text to bottom */
+            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
             text-align: center;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #333;
-            min-height: 180px; /* Ensure cards have enough space */
+            min-height: 180px;
         }
 
         .card:hover {
@@ -149,27 +149,25 @@
         .card img {
             max-width: 80px;
             height: auto;
-            margin-bottom: 15px; /* Added margin to separate image and text */
-            margin-top: auto; /* Push image up if space allows */
+            margin-bottom: 15px;
+            margin-top: auto;
             border-radius: 8px;
-            object-fit: contain; /* Ensures image fits without cropping */
-            flex-shrink: 0; /* Prevent image from shrinking */
+            object-fit: contain;
+            flex-shrink: 0;
         }
         
-        /* Updated styles for the name */
         .card h3 {
             font-size: 1rem;
-            margin: auto 0 0 0; /* Push name to bottom, auto top margin */
+            margin: auto 0 0 0;
             color: var(--text-color);
         }
 
-        .card p { /* This rule is now effectively unused since <p> tags are removed */
+        .card p {
             font-size: 0.9rem;
             color: var(--text-secondary-color);
             margin-top: 5px;
         }
         
-        /* Updated Trust Badges CSS */
         .trust-badges {
             text-align: center;
             padding: 40px 0;
@@ -192,7 +190,6 @@
             color: var(--primary-color);
         }
 
-        /* Modal (Content Locker) Styles */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -256,7 +253,6 @@
             color: #666;
         }
 
-        /* Footer Styles (The Simple & Stable Version) */
         footer {
             padding: 40px 0 20px 0;
         }
@@ -267,7 +263,6 @@
             font-size: 0.9rem;
         }
 
-        /* Media query for phones to show 2 cards per line */
         @media (max-width: 600px) {
             .cards-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -299,23 +294,23 @@
 
             <div class="cards-grid">
                 <div class="card" data-card="roblox">
-                    <img src="https://i.postimg.cc/qM6BtSyG/unnamed.png" alt="Roblox Gift Card">
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/13867075995993063384_0" alt="Roblox Gift Card">
                     <h3>Roblox</h3>
                 </div>
                 <div class="card" data-card="amazon">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Gift Card">
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/4335871775566928314_0" alt="Amazon Gift Card">
                     <h3>Amazon</h3>
                 </div>
                 <div class="card" data-card="apple">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black_rgb.svg" alt="Apple Gift Card">
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/6574780907221925128_0" alt="Apple Gift Card">
                     <h3>Apple</h3>
                 </div>
                 <div class="card" data-card="xbox">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Xbox_one_logo.svg" alt="Xbox Gift Card">
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/6772864589835935776_0" alt="Xbox Gift Card">
                     <h3>Xbox</h3>
                 </div>
                 <div class="card" data-card="playstation">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/PlayStation_5_logo.svg" alt="PlayStation Gift Card">
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/9230293958588275033_0" alt="PlayStation Gift Card">
                     <h3>PlayStation</h3>
                 </div>
                 <div class="card" data-card="steam">
@@ -323,7 +318,7 @@
                     <h3>Steam</h3>
                 </div>
                 <div class="card" data-card="google-play">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Google_Play_logo.svg" alt="Google Play Gift Card">
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/17641901408247472699_0" alt="Google Play Gift Card">
                     <h3>Google Play</h3>
                 </div>
                 <div class="card" data-card="visa">
@@ -405,4 +400,3 @@
     </script>
 </body>
 </html>
-
