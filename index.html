@@ -131,12 +131,14 @@
             border-radius: 15px;
             padding: 20px;
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Changed to column to stack elements */
+            justify-content: space-between; /* Pushes image to top, text to bottom */
             align-items: center;
             text-align: center;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #333;
+            min-height: 180px; /* Ensure cards have enough space */
         }
 
         .card:hover {
@@ -147,17 +149,21 @@
         .card img {
             max-width: 80px;
             height: auto;
-            margin-bottom: 15px;
+            margin-bottom: 15px; /* Added margin to separate image and text */
+            margin-top: auto; /* Push image up if space allows */
             border-radius: 8px;
+            object-fit: contain; /* Ensures image fits without cropping */
+            flex-shrink: 0; /* Prevent image from shrinking */
         }
-
+        
+        /* Updated styles for the name */
         .card h3 {
             font-size: 1rem;
-            margin: 0;
+            margin: auto 0 0 0; /* Push name to bottom, auto top margin */
             color: var(--text-color);
         }
 
-        .card p {
+        .card p { /* This rule is now effectively unused since <p> tags are removed */
             font-size: 0.9rem;
             color: var(--text-secondary-color);
             margin-top: 5px;
@@ -293,7 +299,9 @@
 
             <div class="cards-grid">
                 <div class="card" data-card="roblox">
-                    <img src="http://googleusercontent.com/image_generation_content/14" alt="Roblox Gift Card">
+                    <img src="http://googleusercontent.com/image_generation_content/19
+
+" alt="Roblox Gift Card">
                     <h3>Roblox</h3>
                 </div>
                 <div class="card" data-card="amazon">
