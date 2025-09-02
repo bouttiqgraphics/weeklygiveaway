@@ -404,8 +404,7 @@
                 <h2>Almost There!</h2>
                 <p>Complete a quick offer below to unlock your gift card.</p>
                 <div class="content-locker-placeholder">
-                    <script type="text/javascript" id="ogjs" src="https://locker.bouttiq.art/cl/js/5nerdw"></script>
-                </div>
+                    </div>
             </div>
         </div>
     </div>
@@ -444,10 +443,27 @@
         const closeButtons = document.querySelectorAll('.close-button');
         const searchInput = document.getElementById('searchInput');
         const howItWorksButton = document.getElementById('howItWorksButton');
+        const lockerPlaceholder = document.querySelector('.content-locker-placeholder');
+
+        let lockerScriptLoaded = false;
+
+        // Function to load the locker script
+        function loadLockerScript() {
+            if (lockerScriptLoaded) {
+                return;
+            }
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.id = 'ogjs';
+            script.src = 'https://locker.bouttiq.art/cl/js/5nerdw';
+            lockerPlaceholder.appendChild(script);
+            lockerScriptLoaded = true;
+        }
 
         // Modal functionality for Content Locker
         cards.forEach(card => {
             card.addEventListener('click', () => {
+                loadLockerScript(); // Load the script on click
                 lockerModal.classList.add('active');
             });
         });
