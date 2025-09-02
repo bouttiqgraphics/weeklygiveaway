@@ -65,12 +65,12 @@
             padding: 30px 0;
             position: relative;
         }
-        
-        /* Menu Button Styles - Adjusted `right` property */
+
+        /* Menu Button Styles */
         #howItWorksButton {
             position: absolute;
             top: 25px;
-            right: 25px; 
+            right: 25px;
             background: none;
             border: none;
             color: var(--text-color);
@@ -83,10 +83,19 @@
             color: var(--primary-color);
         }
 
+        /* Logo and Search Container - Adjusted for left alignment */
+        .header-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
         .logo {
             font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-right: auto; /* Pushes the logo to the left */
         }
 
         .logo i {
@@ -207,8 +216,35 @@
         .trust-badges .badge-item i {
             color: var(--primary-color);
         }
+        
+        /* New Styles for the Offers Section */
+        #offers-section {
+            background-color: var(--surface-color);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            display: none; /* This keeps it hidden by default */
+        }
+        
+        #offers-section h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        #offers-section p {
+            text-align: center;
+            color: var(--text-secondary-color);
+            margin-bottom: 25px;
+        }
 
-        /* Modal Styles (for Content Locker & How It Works) */
+        .content-locker-placeholder {
+            /* This is where your locker script will appear */
+            width: 100%;
+            height: 400px;
+        }
+
+        /* How It Works Modal */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -254,22 +290,6 @@
             cursor: pointer;
         }
 
-        #modal-body h2 {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-        #modal-body p {
-            text-align: center;
-            color: var(--text-secondary-color);
-            margin-bottom: 25px;
-        }
-        .content-locker-placeholder {
-            /* This is where your locker script will appear */
-            width: 100%;
-            height: 400px; /* Adjust height as needed for your locker */
-        }
-        
-        /* How It Works List */
         .how-it-works-list {
             text-align: left;
             margin: 0 auto;
@@ -300,7 +320,7 @@
             color: var(--primary-color);
             margin-bottom: 5px;
         }
-        
+
         footer {
             padding: 40px 0 20px 0;
         }
@@ -326,13 +346,15 @@
         <header>
             <button id="howItWorksButton"><i class="fas fa-bars"></i></button>
 
-            <div class="logo">
-                <i class="fas fa-gift"></i>
-                Giveaway Hub
-            </div>
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search for a gift card...">
-                <i class="fas fa-search"></i>
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-gift"></i>
+                    Giveaway Hub
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search for a gift card...">
+                    <i class="fas fa-search"></i>
+                </div>
             </div>
         </header>
 
@@ -391,23 +413,18 @@
                     <span>100% Free</span>
                 </div>
             </div>
-        </main>
-        
-        <footer>
-            <p>&copy; 2024 Giveaway Hub. All rights reserved.</p>
-        </footer>
-    </div>
 
-    <div class="modal-overlay" id="lockerModal">
-        <div class="modal-content">
-            <span class="close-button" data-close-modal="locker">&times;</span>
-            <div id="modal-body-locker">
+            <div id="offers-section" class="container">
                 <h2>Almost There!</h2>
                 <p>Complete a quick offer below to unlock your gift card.</p>
                 <div class="content-locker-placeholder">
                     </div>
             </div>
-        </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024 Giveaway Hub. All rights reserved.</p>
+        </footer>
     </div>
 
     <div class="modal-overlay" id="howItWorksModal">
@@ -439,16 +456,14 @@
 
     <script>
         const cards = document.querySelectorAll('.card');
-        const lockerModal = document.getElementById('lockerModal');
         const howItWorksModal = document.getElementById('howItWorksModal');
-        const closeButtons = document.querySelectorAll('.close-button');
-        const searchInput = document.getElementById('searchInput');
         const howItWorksButton = document.getElementById('howItWorksButton');
+        const offersSection = document.getElementById('offers-section');
         const lockerPlaceholder = document.querySelector('.content-locker-placeholder');
 
         let lockerScriptLoaded = false;
 
-        // Function to load the locker script
+        // Function to load the locker script dynamically
         function loadLockerScript() {
             if (lockerScriptLoaded) {
                 return;
@@ -461,26 +476,30 @@
             lockerScriptLoaded = true;
         }
 
-        // Modal functionality for Content Locker
+        // Card click functionality
         cards.forEach(card => {
             card.addEventListener('click', () => {
-                loadLockerScript(); // Load the script on click
-                lockerModal.classList.add('active');
+                // Show the offers section
+                offersSection.style.display = 'block';
+                
+                // Load the locker script
+                loadLockerScript();
+                
+                // Smooth scroll to the offers section
+                offersSection.scrollIntoView({ behavior: 'smooth' });
             });
         });
 
-        // New Modal functionality for How It Works
+        // How It Works Modal functionality
         howItWorksButton.addEventListener('click', () => {
             howItWorksModal.classList.add('active');
         });
 
         // Close button functionality for all modals
-        closeButtons.forEach(button => {
+        document.querySelectorAll('.close-button').forEach(button => {
             button.addEventListener('click', () => {
                 const modalType = button.dataset.closeModal;
-                if (modalType === 'locker') {
-                    lockerModal.classList.remove('active');
-                } else if (modalType === 'how-it-works') {
+                if (modalType === 'how-it-works') {
                     howItWorksModal.classList.remove('active');
                 }
             });
@@ -496,6 +515,7 @@
         });
 
         // Search functionality
+        const searchInput = document.getElementById('searchInput');
         searchInput.addEventListener('keyup', (event) => {
             const searchTerm = event.target.value.toLowerCase();
             cards.forEach(card => {
