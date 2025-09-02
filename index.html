@@ -63,6 +63,24 @@
             flex-direction: column;
             align-items: center;
             padding: 30px 0;
+            position: relative; /* Added to position the new button */
+        }
+        
+        /* New Menu Button Styles */
+        #howItWorksButton {
+            position: absolute;
+            top: 25px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        #howItWorksButton:hover {
+            color: var(--primary-color);
         }
 
         .logo {
@@ -190,6 +208,7 @@
             color: var(--primary-color);
         }
 
+        /* Modal Styles (for Content Locker & How It Works) */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -253,6 +272,38 @@
             color: #666;
         }
 
+        /* How It Works List */
+        .how-it-works-list {
+            text-align: left;
+            margin: 0 auto;
+            max-width: 350px;
+            list-style: none;
+        }
+        .how-it-works-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 20px;
+        }
+        .how-it-works-list li:before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            border-radius: 50%;
+        }
+        .how-it-works-list h3 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
         footer {
             padding: 40px 0 20px 0;
         }
@@ -276,6 +327,8 @@
 
     <div class="container">
         <header>
+            <button id="howItWorksButton"><i class="fas fa-bars"></i></button>
+
             <div class="logo">
                 <i class="fas fa-gift"></i>
                 Giveaway Hub
@@ -348,10 +401,10 @@
         </footer>
     </div>
 
-    <div class="modal-overlay">
+    <div class="modal-overlay" id="lockerModal">
         <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <div id="modal-body">
+            <span class="close-button" data-close-modal="locker">&times;</span>
+            <div id="modal-body-locker">
                 <h2>Almost There!</h2>
                 <p>Complete a quick offer below to unlock your gift card.</p>
                 <div class="content-locker-placeholder">
@@ -362,27 +415,72 @@
         </div>
     </div>
 
+    <div class="modal-overlay" id="howItWorksModal">
+        <div class="modal-content">
+            <span class="close-button" data-close-modal="how-it-works">&times;</span>
+            <div id="modal-body-how-it-works">
+                <h2>How It Works</h2>
+                <ul class="how-it-works-list">
+                    <li data-step="1">
+                        <h3>Choose Your Card</h3>
+                        <p>Select your favorite gift card from the options on the main page.</p>
+                    </li>
+                    <li data-step="2">
+                        <h3>Complete an Offer</h3>
+                        <p>Complete one of the simple, free offers from our sponsors. This helps us fund the giveaways.</p>
+                    </li>
+                    <li data-step="3">
+                        <h3>Enter Your Email</h3>
+                        <p>After completing the offer, you'll be redirected to a new page to enter your email for the drawing.</p>
+                    </li>
+                    <li data-step="4">
+                        <h3>Wait for the Winner</h3>
+                        <p>We announce winners weekly and will notify you via email if you are the lucky winner!</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <script>
         const cards = document.querySelectorAll('.card');
-        const modalOverlay = document.querySelector('.modal-overlay');
-        const closeButton = document.querySelector('.close-button');
+        const lockerModal = document.getElementById('lockerModal');
+        const howItWorksModal = document.getElementById('howItWorksModal');
+        const closeButtons = document.querySelectorAll('.close-button');
         const searchInput = document.getElementById('searchInput');
+        const howItWorksButton = document.getElementById('howItWorksButton');
 
-        // Modal functionality
+        // Modal functionality for Content Locker
         cards.forEach(card => {
             card.addEventListener('click', () => {
-                modalOverlay.classList.add('active');
+                lockerModal.classList.add('active');
             });
         });
 
-        closeButton.addEventListener('click', () => {
-            modalOverlay.classList.remove('active');
+        // New Modal functionality for How It Works
+        howItWorksButton.addEventListener('click', () => {
+            howItWorksModal.classList.add('active');
         });
 
-        modalOverlay.addEventListener('click', (event) => {
-            if (event.target === modalOverlay) {
-                modalOverlay.classList.remove('active');
-            }
+        // Close button functionality for all modals
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modalType = button.dataset.closeModal;
+                if (modalType === 'locker') {
+                    lockerModal.classList.remove('active');
+                } else if (modalType === 'how-it-works') {
+                    howItWorksModal.classList.remove('active');
+                }
+            });
+        });
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (event) => {
+                if (event.target === overlay) {
+                    overlay.classList.remove('active');
+                }
+            });
         });
 
         // Search functionality
@@ -400,8 +498,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
