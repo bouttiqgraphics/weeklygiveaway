@@ -207,7 +207,7 @@
             color: var(--primary-color);
         }
 
-        /* Modal Styles (for Content Locker & How It Works) */
+        /* Modal Styles (for How It Works) */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -253,22 +253,6 @@
             cursor: pointer;
         }
 
-        #modal-body h2 {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-        #modal-body p {
-            text-align: center;
-            color: var(--text-secondary-color);
-            margin-bottom: 25px;
-        }
-        .content-locker-placeholder {
-            /* This is where your locker script will appear */
-            width: 100%;
-            height: 400px; /* Adjust height as needed for your locker */
-        }
-        
-        /* How It Works List */
         .how-it-works-list {
             text-align: left;
             margin: 0 auto;
@@ -397,18 +381,6 @@
         </footer>
     </div>
 
-    <div class="modal-overlay" id="lockerModal">
-        <div class="modal-content">
-            <span class="close-button" data-close-modal="locker">&times;</span>
-            <div id="modal-body-locker">
-                <h2>Almost There!</h2>
-                <p>Complete a quick offer below to unlock your gift card.</p>
-                <div class="content-locker-placeholder">
-                    </div>
-            </div>
-        </div>
-    </div>
-
     <div class="modal-overlay" id="howItWorksModal">
         <div class="modal-content">
             <span class="close-button" data-close-modal="how-it-works">&times;</span>
@@ -438,48 +410,33 @@
 
     <script>
         const cards = document.querySelectorAll('.card');
-        const lockerModal = document.getElementById('lockerModal');
         const howItWorksModal = document.getElementById('howItWorksModal');
         const closeButtons = document.querySelectorAll('.close-button');
         const searchInput = document.getElementById('searchInput');
         const howItWorksButton = document.getElementById('howItWorksButton');
-        const lockerPlaceholder = document.querySelector('.content-locker-placeholder');
 
-        let lockerScriptLoaded = false;
+        // This is the URL to your content locker. Please confirm this is correct.
+        const lockerBaseUrl = 'https://locker.bouttiq.art/cl/5nerdw';
 
-        // Function to load the locker script
-        function loadLockerScript() {
-            if (lockerScriptLoaded) {
-                return;
-            }
-            const script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.id = 'ogjs';
-            script.src = 'https://locker.bouttiq.art/cl/js/5nerdw';
-            lockerPlaceholder.appendChild(script);
-            lockerScriptLoaded = true;
-        }
-
-        // Modal functionality for Content Locker
+        // Redirects the user to the locker URL with the card name
         cards.forEach(card => {
             card.addEventListener('click', () => {
-                loadLockerScript(); // Load the script on click
-                lockerModal.classList.add('active');
+                const cardName = card.dataset.card;
+                const lockerUrlWithParam = `${lockerBaseUrl}?card=${cardName}`;
+                window.location.href = lockerUrlWithParam;
             });
         });
 
-        // New Modal functionality for How It Works
+        // Modal functionality for How It Works
         howItWorksButton.addEventListener('click', () => {
             howItWorksModal.classList.add('active');
         });
 
-        // Close button functionality for all modals
+        // Close button functionality for How It Works modal
         closeButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const modalType = button.dataset.closeModal;
-                if (modalType === 'locker') {
-                    lockerModal.classList.remove('active');
-                } else if (modalType === 'how-it-works') {
+                if (modalType === 'how-it-works') {
                     howItWorksModal.classList.remove('active');
                 }
             });
