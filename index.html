@@ -70,12 +70,12 @@
 
         #howItWorksButton {
             position: absolute;
-            top: 25px;
-            right: 25px;
+            top: 22px;
+            left: 25px;
             background: none;
             border: none;
             color: var(--text-color);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             cursor: pointer;
             transition: color 0.3s ease;
         }
@@ -475,6 +475,26 @@
                         <h4>Alex G.</h4>
                         <p>Won a $25 Apple Gift Card</p>
                     </li>
+                    <li class="winner-item">
+                        <h4>Emily R.</h4>
+                        <p>Won a $75 Google Play Gift Card</p>
+                    </li>
+                    <li class="winner-item">
+                        <h4>David H.</h4>
+                        <p>Won a $100 PlayStation Gift Card</p>
+                    </li>
+                    <li class="winner-item">
+                        <h4>Maria P.</h4>
+                        <p>Won a $50 Roblox Gift Card</p>
+                    </li>
+                    <li class="winner-item">
+                        <h4>Tom C.</h4>
+                        <p>Won a $25 Visa Gift Card</p>
+                    </li>
+                    <li class="winner-item">
+                        <h4>Lisa K.</h4>
+                        <p>Won a $100 Xbox Gift Card</p>
+                    </li>
                 </ul>
             </section>
 
@@ -605,7 +625,7 @@
             });
         });
 
-        // Auto-scrolling for winners list
+        // Auto-scrolling for winners list (will not stop)
         function startAutoScroll() {
             if (scrollInterval) return;
             scrollInterval = setInterval(() => {
@@ -617,18 +637,8 @@
                 } else if (winnersList.scrollLeft <= 0) {
                     scrollDirection = 1;
                 }
-            }, 20); // Adjust scroll speed here
+            }, 20);
         }
-
-        function stopAutoScroll() {
-            clearInterval(scrollInterval);
-            scrollInterval = null;
-        }
-
-        winnersList.addEventListener('mouseenter', stopAutoScroll);
-        winnersList.addEventListener('mouseleave', startAutoScroll);
-        winnersList.addEventListener('touchstart', stopAutoScroll);
-        winnersList.addEventListener('touchend', startAutoScroll);
 
         // Start scrolling on page load
         startAutoScroll();
