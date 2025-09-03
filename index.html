@@ -194,56 +194,7 @@
             margin-top: 5px;
         }
 
-        /* Giveaway Countdown Section - New compact style */
-        .giveaway-section {
-            text-align: center;
-            padding: 25px 0;
-            margin: 20px 0;
-            border: 2px solid var(--primary-color);
-            border-radius: 15px;
-            background-color: #2a2a2a;
-        }
-
-        .giveaway-section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-            color: var(--primary-color);
-        }
-
-        .giveaway-section p {
-            font-size: 1.0rem;
-            color: var(--text-color);
-            margin-bottom: 15px;
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .countdown-item {
-            background-color: var(--surface-color);
-            padding: 10px 15px;
-            border-radius: 10px;
-            min-width: 65px;
-        }
-
-        .countdown-item span {
-            display: block;
-            font-size: 1.8rem;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        .countdown-item p {
-            font-size: 0.8rem;
-            color: var(--text-secondary-color);
-            margin-top: 5px;
-        }
-        
-        /* Recent Winners Section - New horizontal scroll style */
+        /* Recent Winners Section - Dynamic horizontal scroll style */
         .winners-section {
             padding: 40px 0;
             text-align: center;
@@ -262,9 +213,9 @@
             list-style: none;
             display: flex;
             gap: 20px;
-            overflow-x: auto; /* Enable horizontal scrolling */
-            padding-bottom: 20px; /* Space for the scrollbar */
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            overflow-x: auto;
+            padding-bottom: 20px;
+            -webkit-overflow-scrolling: touch;
             padding-left: 10px;
             padding-right: 10px;
         }
@@ -280,7 +231,7 @@
         }
         
         .winner-item {
-            flex-shrink: 0; /* Prevents items from shrinking */
+            flex-shrink: 0;
             background-color: var(--surface-color);
             padding: 20px;
             border-radius: 10px;
@@ -413,6 +364,23 @@
             color: var(--primary-color);
             margin-bottom: 5px;
         }
+        .how-it-works-info {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px solid var(--primary-color);
+        }
+        .how-it-works-info h3 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        .how-it-works-info p {
+            color: var(--text-color);
+            font-size: 1rem;
+        }
 
         /* Footer */
         footer {
@@ -484,29 +452,6 @@
                 </div>
             </div>
 
-            <section class="giveaway-section">
-                <h2>Next Drawing In:</h2>
-                <p>5 Lucky winners will receive a gift card of their choice!</p>
-                <div class="countdown">
-                    <div class="countdown-item">
-                        <span id="countdown-days">00</span>
-                        <p>Days</p>
-                    </div>
-                    <div class="countdown-item">
-                        <span id="countdown-hours">00</span>
-                        <p>Hours</p>
-                    </div>
-                    <div class="countdown-item">
-                        <span id="countdown-minutes">00</span>
-                        <p>Minutes</p>
-                    </div>
-                    <div class="countdown-item">
-                        <span id="countdown-seconds">00</span>
-                        <p>Seconds</p>
-                    </div>
-                </div>
-            </section>
-
             <section class="winners-section">
                 <h2>Recent Winners</h2>
                 <ul class="winners-list">
@@ -568,7 +513,12 @@
         <div class="modal-content">
             <span class="close-button" data-close-modal="how-it-works">&times;</span>
             <div id="modal-body-how-it-works">
-                <h2>How It Works</h2>
+                <h2>Giveaway Info & How It Works</h2>
+                <div class="how-it-works-info">
+                    <h3>Giveaway Schedule</h3>
+                    <p>New winners are drawn **every Wednesday and Saturday**.</p>
+                    <p>5 lucky winners are selected for each drawing!</p>
+                </div>
                 <ul class="how-it-works-list">
                     <li data-step="1">
                         <h3>Choose Your Card</h3>
@@ -595,8 +545,11 @@
         const searchInput = document.getElementById('searchInput');
         const howItWorksButton = document.getElementById('howItWorksButton');
         const lockerPlaceholder = document.querySelector('.content-locker-placeholder');
+        const winnersList = document.querySelector('.winners-list');
 
         let lockerScriptLoaded = false;
+        let scrollInterval;
+        let scrollDirection = 1;
 
         function loadLockerScript() {
             if (lockerScriptLoaded) {
@@ -651,63 +604,35 @@
                 }
             });
         });
-        
-        // Final Countdown Timer Logic (Wednesday and Saturday at 9 PM)
-        function updateCountdown() {
-            const now = new Date('September 03, 2025 20:58:27');
-            const dayOfWeek = now.getDay();
-            const nextDrawing = new Date(now);
 
-            let daysToAdd = 0;
-            const targetHour = 21;
-            const targetMinute = 0;
-            const targetSecond = 0;
+        // Auto-scrolling for winners list
+        function startAutoScroll() {
+            if (scrollInterval) return;
+            scrollInterval = setInterval(() => {
+                const scrollWidth = winnersList.scrollWidth - winnersList.clientWidth;
+                winnersList.scrollLeft += scrollDirection;
 
-            if (dayOfWeek < 3) { // Today is Mon or Tue, target Wednesday
-                daysToAdd = 3 - dayOfWeek;
-            } else if (dayOfWeek === 3) { // Today is Wednesday
-                if (now.getHours() < targetHour) {
-                    daysToAdd = 0;
-                } else {
-                    daysToAdd = 3; // Target next Saturday
+                if (winnersList.scrollLeft >= scrollWidth) {
+                    scrollDirection = -1;
+                } else if (winnersList.scrollLeft <= 0) {
+                    scrollDirection = 1;
                 }
-            } else if (dayOfWeek < 6) { // Today is Thu or Fri, target Saturday
-                daysToAdd = 6 - dayOfWeek;
-            } else if (dayOfWeek === 6) { // Today is Saturday
-                if (now.getHours() < targetHour) {
-                    daysToAdd = 0;
-                } else {
-                    daysToAdd = 4; // Target next Wednesday
-                }
-            } else { // Today is Sunday
-                daysToAdd = 3; // Target Wednesday
-            }
-            
-            nextDrawing.setDate(now.getDate() + daysToAdd);
-            nextDrawing.setHours(targetHour, targetMinute, targetSecond, 0);
-
-            if (nextDrawing.getTime() < now.getTime()) {
-                if (daysToAdd === 0) { // If it's the target day, but time has passed
-                    daysToAdd = (dayOfWeek === 3) ? 3 : 4;
-                    nextDrawing.setDate(now.getDate() + daysToAdd);
-                }
-            }
-            
-            const timeRemaining = nextDrawing.getTime() - now.getTime();
-
-            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-            document.getElementById('countdown-days').textContent = String(days).padStart(2, '0');
-            document.getElementById('countdown-hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('countdown-minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('countdown-seconds').textContent = String(seconds).padStart(2, '0');
+            }, 20); // Adjust scroll speed here
         }
 
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+        function stopAutoScroll() {
+            clearInterval(scrollInterval);
+            scrollInterval = null;
+        }
+
+        winnersList.addEventListener('mouseenter', stopAutoScroll);
+        winnersList.addEventListener('mouseleave', startAutoScroll);
+        winnersList.addEventListener('touchstart', stopAutoScroll);
+        winnersList.addEventListener('touchend', startAutoScroll);
+
+        // Start scrolling on page load
+        startAutoScroll();
+
     </script>
 </body>
 </html>
