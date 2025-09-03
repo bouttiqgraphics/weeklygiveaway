@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gift Cards & Giveaways</title>
+    <title>Win Gift Cards - Giveaways Every 3 Days!</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
 
@@ -17,6 +17,7 @@
             --secondary-color: #8c7ae6;
             --text-color: #ffffff;
             --text-secondary-color: #b3b3b3;
+            --accent-color: #e50914; /* For emphasis */
         }
 
         * {
@@ -57,30 +58,14 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
+        
+        /* Header & Hero Section */
         header {
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 30px 0;
             position: relative;
-        }
-        
-        /* Menu Button Styles - Adjusted `right` property */
-        #howItWorksButton {
-            position: absolute;
-            top: 25px;
-            right: 25px; 
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        #howItWorksButton:hover {
-            color: var(--primary-color);
         }
 
         .logo {
@@ -137,6 +122,108 @@
             color: var(--text-secondary-color);
         }
 
+        /* Giveaway Countdown Section - New */
+        .giveaway-section {
+            text-align: center;
+            padding: 40px 0;
+            margin: 20px 0;
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            background-color: #2a2a2a;
+        }
+
+        .giveaway-section h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .giveaway-section p {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background-color: var(--surface-color);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 90px;
+        }
+
+        .countdown-item span {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .countdown-item p {
+            font-size: 0.9rem;
+            color: var(--text-secondary-color);
+            margin-top: 5px;
+        }
+        
+        /* How It Works Section - Now on main page */
+        .how-it-works-section {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            margin: 40px 0;
+        }
+
+        .how-it-works-section h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        .how-it-works-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            list-style: none;
+            text-align: left;
+        }
+
+        .how-it-works-list li {
+            position: relative;
+            padding-left: 60px;
+            max-width: 250px;
+        }
+
+        .how-it-works-list li::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            border-radius: 50%;
+            font-size: 1.2rem;
+        }
+
+        .how-it-works-list h3 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        /* Gift Card Grid */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -185,6 +272,54 @@
             color: var(--text-secondary-color);
             margin-top: 5px;
         }
+
+        /* Recent Winners Section - New */
+        .winners-section {
+            padding: 40px 0;
+            text-align: center;
+            background-color: #252525;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .winners-section h2 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+        }
+        
+        .winners-list {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .winner-item {
+            background-color: var(--surface-color);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            width: 200px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .winner-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .winner-item h4 {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .winner-item p {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
         
         .trust-badges {
             text-align: center;
@@ -208,7 +343,7 @@
             color: var(--primary-color);
         }
 
-        /* Modal Styles (for Content Locker & How It Works) */
+        /* Modal Styles */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -254,53 +389,16 @@
             cursor: pointer;
         }
 
-        #modal-body h2 {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-        #modal-body p {
-            text-align: center;
-            color: var(--text-secondary-color);
-            margin-bottom: 25px;
-        }
         .content-locker-placeholder {
-            /* This is where your locker script will appear */
             width: 100%;
-            height: 400px; /* Adjust height as needed for your locker */
-        }
-        
-        /* How It Works List */
-        .how-it-works-list {
-            text-align: left;
-            margin: 0 auto;
-            max-width: 350px;
-            list-style: none;
-        }
-        .how-it-works-list li {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 20px;
-        }
-        .how-it-works-list li:before {
-            content: attr(data-step);
-            position: absolute;
-            left: 0;
-            top: 0;
-            background-color: var(--primary-color);
-            color: var(--background-color);
-            width: 20px;
-            height: 20px;
+            height: 400px;
+            text-align: center;
             display: flex;
-            justify-content: center;
             align-items: center;
-            font-weight: bold;
-            border-radius: 50%;
-        }
-        .how-it-works-list h3 {
-            color: var(--primary-color);
-            margin-bottom: 5px;
+            justify-content: center;
         }
         
+        /* Footer */
         footer {
             padding: 40px 0 20px 0;
         }
@@ -311,10 +409,30 @@
             font-size: 0.9rem;
         }
 
+        /* Responsive */
         @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .giveaway-section h2 {
+                font-size: 1.5rem;
+            }
+            .countdown-item span {
+                font-size: 2rem;
+            }
             .cards-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
+            }
+            .how-it-works-list {
+                flex-direction: column;
+            }
+            .how-it-works-list li {
+                max-width: none;
+            }
+            .winners-list {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
@@ -324,8 +442,6 @@
 
     <div class="container">
         <header>
-            <button id="howItWorksButton"><i class="fas fa-bars"></i></button>
-
             <div class="logo">
                 <i class="fas fa-gift"></i>
                 Giveaway Hub
@@ -339,8 +455,49 @@
         <main>
             <div class="hero">
                 <h1>Win Your Favorite Gift Card Today!</h1>
-                <p>Choose your card and complete a simple offer to get started.</p>
+                <p>Choose your card below and complete a simple offer to get started.</p>
             </div>
+
+            <section class="giveaway-section">
+                <h2>Next Drawing In:</h2>
+                <p>5 Lucky winners will receive a gift card of their choice!</p>
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <span id="countdown-days">00</span>
+                        <p>Days</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="countdown-hours">00</span>
+                        <p>Hours</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="countdown-minutes">00</span>
+                        <p>Minutes</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="countdown-seconds">00</span>
+                        <p>Seconds</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="how-it-works-section">
+                <h2>How It Works</h2>
+                <ul class="how-it-works-list">
+                    <li data-step="1">
+                        <h3>Choose Your Card</h3>
+                        <p>Select your favorite gift card from our wide range of options below.</p>
+                    </li>
+                    <li data-step="2">
+                        <h3>Complete an Offer</h3>
+                        <p>Complete a simple, free offer from our sponsors. This helps us fund the giveaways.</p>
+                    </li>
+                    <li data-step="3">
+                        <h3>Enter Your Info</h3>
+                        <p>Enter your email and confirm your entry for the next drawing.</p>
+                    </li>
+                </ul>
+            </section>
 
             <div class="cards-grid">
                 <div class="card" data-card="roblox">
@@ -376,6 +533,28 @@
                     <h3>Visa</h3>
                 </div>
             </div>
+            
+            <section class="winners-section">
+                <h2>Recent Winners</h2>
+                <ul class="winners-list">
+                    <li class="winner-item">
+                        <h4>Jane D.</h4>
+                        <p>Won a $50 Amazon Gift Card</p>
+                    </li>
+                    <li class="winner-item">
+                        <h4>Michael B.</h4>
+                        <p>Won a $100 Steam Gift Card</p>
+                    </li>
+                    <li class="winner-item">
+                        <h4>Chris P.</h4>
+                        <p>Won a $20 Roblox Gift Card</p>
+                    </li>
+                    <li class="winner-item">
+                        <h4>Sarah W.</h4>
+                        <p>Won a $50 Visa Gift Card</p>
+                    </li>
+                </ul>
+            </section>
 
             <div class="trust-badges">
                 <div class="badge-item">
@@ -408,40 +587,11 @@
         </div>
     </div>
 
-    <div class="modal-overlay" id="howItWorksModal">
-        <div class="modal-content">
-            <span class="close-button" data-close-modal="how-it-works">&times;</span>
-            <div id="modal-body-how-it-works">
-                <h2>How It Works</h2>
-                <ul class="how-it-works-list">
-                    <li data-step="1">
-                        <h3>Choose Your Card</h3>
-                        <p>Select your favorite gift card from the options on the main page.</p>
-                    </li>
-                    <li data-step="2">
-                        <h3>Complete an Offer</h3>
-                        <p>Complete one of the simple, free offers from our sponsors. This helps us fund the giveaways.</p>
-                    </li>
-                    <li data-step="3">
-                        <h3>Enter Your Email</h3>
-                        <p>After completing the offer, you'll be redirected to a new page to enter your email for the drawing.</p>
-                    </li>
-                    <li data-step="4">
-                        <h3>Wait for the Winner</h3>
-                        <p>We announce winners weekly and will notify you via email if you are the lucky winner!</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
     <script>
         const cards = document.querySelectorAll('.card');
         const lockerModal = document.getElementById('lockerModal');
-        const howItWorksModal = document.getElementById('howItWorksModal');
         const closeButtons = document.querySelectorAll('.close-button');
         const searchInput = document.getElementById('searchInput');
-        const howItWorksButton = document.getElementById('howItWorksButton');
         const lockerPlaceholder = document.querySelector('.content-locker-placeholder');
 
         let lockerScriptLoaded = false;
@@ -467,19 +617,12 @@
             });
         });
 
-        // New Modal functionality for How It Works
-        howItWorksButton.addEventListener('click', () => {
-            howItWorksModal.classList.add('active');
-        });
-
         // Close button functionality for all modals
         closeButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const modalType = button.dataset.closeModal;
                 if (modalType === 'locker') {
                     lockerModal.classList.remove('active');
-                } else if (modalType === 'how-it-works') {
-                    howItWorksModal.classList.remove('active');
                 }
             });
         });
@@ -505,6 +648,37 @@
                 }
             });
         });
+
+        // New Countdown Timer Script
+        function updateCountdown() {
+            const now = new Date().getTime();
+            // Start the cycle from a fixed date (e.g., midnight UTC on Jan 1, 2024)
+            const startDate = new Date('Jan 1, 2024 00:00:00 GMT+0000').getTime();
+            const timeElapsed = now - startDate;
+
+            // Calculate milliseconds for one giveaway cycle (3 days)
+            const cycleDuration = 3 * 24 * 60 * 60 * 1000;
+            const timeIntoCycle = timeElapsed % cycleDuration;
+            const timeRemaining = cycleDuration - timeIntoCycle;
+
+            // Calculate days, hours, minutes, and seconds
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            // Display the result
+            document.getElementById('countdown-days').textContent = String(days).padStart(2, '0');
+            document.getElementById('countdown-hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('countdown-minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('countdown-seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        // Run the countdown every second
+        setInterval(updateCountdown, 1000);
+        
+        // Initial call to prevent a one-second delay
+        updateCountdown();
     </script>
 </body>
 </html>
