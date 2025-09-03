@@ -194,10 +194,10 @@
             margin-top: 5px;
         }
 
-        /* Giveaway Countdown Section */
+        /* Giveaway Countdown Section - New compact style */
         .giveaway-section {
             text-align: center;
-            padding: 40px 0;
+            padding: 25px 0;
             margin: 20px 0;
             border: 2px solid var(--primary-color);
             border-radius: 15px;
@@ -205,45 +205,45 @@
         }
 
         .giveaway-section h2 {
-            font-size: 2rem;
-            margin-bottom: 10px;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
             color: var(--primary-color);
         }
 
         .giveaway-section p {
-            font-size: 1.1rem;
+            font-size: 1.0rem;
             color: var(--text-color);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .countdown {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
         .countdown-item {
             background-color: var(--surface-color);
-            padding: 15px;
+            padding: 10px 15px;
             border-radius: 10px;
-            min-width: 90px;
+            min-width: 65px;
         }
 
         .countdown-item span {
             display: block;
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            line-height: 1;
+            line-height: 1.2;
         }
 
         .countdown-item p {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--text-secondary-color);
             margin-top: 5px;
         }
         
-        /* Recent Winners Section */
+        /* Recent Winners Section - New horizontal scroll style */
         .winners-section {
             padding: 40px 0;
             text-align: center;
@@ -261,12 +261,26 @@
         .winners-list {
             list-style: none;
             display: flex;
-            justify-content: center;
             gap: 20px;
-            flex-wrap: wrap;
+            overflow-x: auto; /* Enable horizontal scrolling */
+            padding-bottom: 20px; /* Space for the scrollbar */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        /* Hide scrollbar for a cleaner look */
+        .winners-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .winners-list {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
         }
         
         .winner-item {
+            flex-shrink: 0; /* Prevents items from shrinking */
             background-color: var(--surface-color);
             padding: 20px;
             border-radius: 10px;
@@ -512,6 +526,10 @@
                         <h4>Sarah W.</h4>
                         <p>Won a $50 Visa Gift Card</p>
                     </li>
+                    <li class="winner-item">
+                        <h4>Alex G.</h4>
+                        <p>Won a $25 Apple Gift Card</p>
+                    </li>
                 </ul>
             </section>
 
@@ -580,7 +598,6 @@
 
         let lockerScriptLoaded = false;
 
-        // Function to load the locker script
         function loadLockerScript() {
             if (lockerScriptLoaded) {
                 return;
@@ -593,20 +610,17 @@
             lockerScriptLoaded = true;
         }
 
-        // Modal functionality for Content Locker
         cards.forEach(card => {
             card.addEventListener('click', () => {
-                loadLockerScript(); // Load the script on click
+                loadLockerScript();
                 lockerModal.classList.add('active');
             });
         });
 
-        // Modal functionality for "How It Works"
         howItWorksButton.addEventListener('click', () => {
             howItWorksModal.classList.add('active');
         });
 
-        // Close button functionality for all modals
         closeButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const modalType = button.dataset.closeModal;
@@ -618,7 +632,6 @@
             });
         });
 
-        // Close modal when clicking outside
         document.querySelectorAll('.modal-overlay').forEach(overlay => {
             overlay.addEventListener('click', (event) => {
                 if (event.target === overlay) {
@@ -627,7 +640,6 @@
             });
         });
 
-        // Search functionality
         searchInput.addEventListener('keyup', (event) => {
             const searchTerm = event.target.value.toLowerCase();
             cards.forEach(card => {
@@ -639,54 +651,62 @@
                 }
             });
         });
-
-        // New Countdown Timer Script (for Wednesday and Saturday)
+        
+        // Final Countdown Timer Logic (Wednesday and Saturday at 9 PM)
         function updateCountdown() {
-            const now = new Date();
-            const dayOfWeek = now.getDay(); // Sunday - 0, Monday - 1, ..., Saturday - 6
+            const now = new Date('September 03, 2025 20:58:27');
+            const dayOfWeek = now.getDay();
             const nextDrawing = new Date(now);
 
-            // Determine the next drawing day: Wednesday (3) or Saturday (6)
-            let daysUntilNextDrawing = 0;
-            if (dayOfWeek < 3) {
-                // If today is Mon or Tue, target Wednesday
-                daysUntilNextDrawing = 3 - dayOfWeek;
-            } else if (dayOfWeek === 3 && now.getHours() < 21) {
-                // If today is Wednesday and it's before 9 PM, target today
-                daysUntilNextDrawing = 0;
-            } else if (dayOfWeek < 6) {
-                // If today is after Wednesday but before Saturday, target Saturday
-                daysUntilNextDrawing = 6 - dayOfWeek;
-            } else if (dayOfWeek === 6 && now.getHours() < 21) {
-                // If today is Saturday and it's before 9 PM, target today
-                daysUntilNextDrawing = 0;
-            } else {
-                // If today is Saturday after 9 PM or Sunday, target next Wednesday
-                daysUntilNextDrawing = (7 - dayOfWeek) + 3;
+            let daysToAdd = 0;
+            const targetHour = 21;
+            const targetMinute = 0;
+            const targetSecond = 0;
+
+            if (dayOfWeek < 3) { // Today is Mon or Tue, target Wednesday
+                daysToAdd = 3 - dayOfWeek;
+            } else if (dayOfWeek === 3) { // Today is Wednesday
+                if (now.getHours() < targetHour) {
+                    daysToAdd = 0;
+                } else {
+                    daysToAdd = 3; // Target next Saturday
+                }
+            } else if (dayOfWeek < 6) { // Today is Thu or Fri, target Saturday
+                daysToAdd = 6 - dayOfWeek;
+            } else if (dayOfWeek === 6) { // Today is Saturday
+                if (now.getHours() < targetHour) {
+                    daysToAdd = 0;
+                } else {
+                    daysToAdd = 4; // Target next Wednesday
+                }
+            } else { // Today is Sunday
+                daysToAdd = 3; // Target Wednesday
             }
             
-            nextDrawing.setDate(now.getDate() + daysUntilNextDrawing);
-            nextDrawing.setHours(21, 0, 0, 0); // Set time to 9 PM (21:00)
+            nextDrawing.setDate(now.getDate() + daysToAdd);
+            nextDrawing.setHours(targetHour, targetMinute, targetSecond, 0);
 
+            if (nextDrawing.getTime() < now.getTime()) {
+                if (daysToAdd === 0) { // If it's the target day, but time has passed
+                    daysToAdd = (dayOfWeek === 3) ? 3 : 4;
+                    nextDrawing.setDate(now.getDate() + daysToAdd);
+                }
+            }
+            
             const timeRemaining = nextDrawing.getTime() - now.getTime();
 
-            // Calculate days, hours, minutes, and seconds
             const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
             const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-            // Display the result
             document.getElementById('countdown-days').textContent = String(days).padStart(2, '0');
             document.getElementById('countdown-hours').textContent = String(hours).padStart(2, '0');
             document.getElementById('countdown-minutes').textContent = String(minutes).padStart(2, '0');
             document.getElementById('countdown-seconds').textContent = String(seconds).padStart(2, '0');
         }
 
-        // Run the countdown every second
         setInterval(updateCountdown, 1000);
-        
-        // Initial call to prevent a one-second delay
         updateCountdown();
     </script>
 </body>
