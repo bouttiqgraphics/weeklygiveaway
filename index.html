@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Win Gift Cards - Giveaways Every 3 Days!</title>
+    <title>Win Gift Cards - Giveaways Every Week!</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
 
@@ -17,7 +17,7 @@
             --secondary-color: #8c7ae6;
             --text-color: #ffffff;
             --text-secondary-color: #b3b3b3;
-            --accent-color: #e50914; /* For emphasis */
+            --accent-color: #e50914;
         }
 
         * {
@@ -66,6 +66,22 @@
             align-items: center;
             padding: 30px 0;
             position: relative;
+        }
+
+        #howItWorksButton {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        #howItWorksButton:hover {
+            color: var(--primary-color);
         }
 
         .logo {
@@ -122,7 +138,63 @@
             color: var(--text-secondary-color);
         }
 
-        /* Giveaway Countdown Section - New */
+        /* Gift Card Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+            gap: 25px;
+            padding: 40px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .cards-grid {
+                grid-template-columns: repeat(4, 1fr); /* 4 columns on desktop */
+            }
+        }
+
+        .card {
+            background-color: var(--surface-color);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #333;
+            min-height: 180px;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 15px var(--primary-color);
+        }
+
+        .card img {
+            max-width: 80px;
+            height: auto;
+            margin-bottom: 15px;
+            margin-top: auto;
+            border-radius: 8px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+        
+        .card h3 {
+            font-size: 1rem;
+            margin: auto 0 0 0;
+            color: var(--text-color);
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary-color);
+            margin-top: 5px;
+        }
+
+        /* Giveaway Countdown Section */
         .giveaway-section {
             text-align: center;
             padding: 40px 0;
@@ -171,109 +243,7 @@
             margin-top: 5px;
         }
         
-        /* How It Works Section - Now on main page */
-        .how-it-works-section {
-            text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
-            margin: 40px 0;
-        }
-
-        .how-it-works-section h2 {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 30px;
-        }
-
-        .how-it-works-list {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            list-style: none;
-            text-align: left;
-        }
-
-        .how-it-works-list li {
-            position: relative;
-            padding-left: 60px;
-            max-width: 250px;
-        }
-
-        .how-it-works-list li::before {
-            content: attr(data-step);
-            position: absolute;
-            left: 0;
-            top: 0;
-            background-color: var(--primary-color);
-            color: var(--background-color);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            border-radius: 50%;
-            font-size: 1.2rem;
-        }
-
-        .how-it-works-list h3 {
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-        
-        /* Gift Card Grid */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 25px;
-            padding: 40px 0;
-        }
-
-        .card {
-            background-color: var(--surface-color);
-            border-radius: 15px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #333;
-            min-height: 180px;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 15px var(--primary-color);
-        }
-
-        .card img {
-            max-width: 80px;
-            height: auto;
-            margin-bottom: 15px;
-            margin-top: auto;
-            border-radius: 8px;
-            object-fit: contain;
-            flex-shrink: 0;
-        }
-        
-        .card h3 {
-            font-size: 1rem;
-            margin: auto 0 0 0;
-            color: var(--text-color);
-        }
-
-        .card p {
-            font-size: 0.9rem;
-            color: var(--text-secondary-color);
-            margin-top: 5px;
-        }
-
-        /* Recent Winners Section - New */
+        /* Recent Winners Section */
         .winners-section {
             padding: 40px 0;
             text-align: center;
@@ -388,7 +358,7 @@
             color: var(--text-secondary-color);
             cursor: pointer;
         }
-
+        
         .content-locker-placeholder {
             width: 100%;
             height: 400px;
@@ -398,6 +368,38 @@
             justify-content: center;
         }
         
+        /* How It Works List */
+        .how-it-works-list {
+            text-align: left;
+            margin: 0 auto;
+            max-width: 350px;
+            list-style: none;
+        }
+        .how-it-works-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 20px;
+        }
+        .how-it-works-list li:before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            border-radius: 50%;
+        }
+        .how-it-works-list h3 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
         /* Footer */
         footer {
             padding: 40px 0 20px 0;
@@ -408,33 +410,6 @@
             color: var(--text-secondary-color);
             font-size: 0.9rem;
         }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .giveaway-section h2 {
-                font-size: 1.5rem;
-            }
-            .countdown-item span {
-                font-size: 2rem;
-            }
-            .cards-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-            .how-it-works-list {
-                flex-direction: column;
-            }
-            .how-it-works-list li {
-                max-width: none;
-            }
-            .winners-list {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
     </style>
 </head>
 <body>
@@ -442,6 +417,8 @@
 
     <div class="container">
         <header>
+            <button id="howItWorksButton"><i class="fas fa-bars"></i></button>
+
             <div class="logo">
                 <i class="fas fa-gift"></i>
                 Giveaway Hub
@@ -455,49 +432,8 @@
         <main>
             <div class="hero">
                 <h1>Win Your Favorite Gift Card Today!</h1>
-                <p>Choose your card below and complete a simple offer to get started.</p>
+                <p>Choose your card and complete a simple offer to get started.</p>
             </div>
-
-            <section class="giveaway-section">
-                <h2>Next Drawing In:</h2>
-                <p>5 Lucky winners will receive a gift card of their choice!</p>
-                <div class="countdown">
-                    <div class="countdown-item">
-                        <span id="countdown-days">00</span>
-                        <p>Days</p>
-                    </div>
-                    <div class="countdown-item">
-                        <span id="countdown-hours">00</span>
-                        <p>Hours</p>
-                    </div>
-                    <div class="countdown-item">
-                        <span id="countdown-minutes">00</span>
-                        <p>Minutes</p>
-                    </div>
-                    <div class="countdown-item">
-                        <span id="countdown-seconds">00</span>
-                        <p>Seconds</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="how-it-works-section">
-                <h2>How It Works</h2>
-                <ul class="how-it-works-list">
-                    <li data-step="1">
-                        <h3>Choose Your Card</h3>
-                        <p>Select your favorite gift card from our wide range of options below.</p>
-                    </li>
-                    <li data-step="2">
-                        <h3>Complete an Offer</h3>
-                        <p>Complete a simple, free offer from our sponsors. This helps us fund the giveaways.</p>
-                    </li>
-                    <li data-step="3">
-                        <h3>Enter Your Info</h3>
-                        <p>Enter your email and confirm your entry for the next drawing.</p>
-                    </li>
-                </ul>
-            </section>
 
             <div class="cards-grid">
                 <div class="card" data-card="roblox">
@@ -533,7 +469,30 @@
                     <h3>Visa</h3>
                 </div>
             </div>
-            
+
+            <section class="giveaway-section">
+                <h2>Next Drawing In:</h2>
+                <p>5 Lucky winners will receive a gift card of their choice!</p>
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <span id="countdown-days">00</span>
+                        <p>Days</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="countdown-hours">00</span>
+                        <p>Hours</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="countdown-minutes">00</span>
+                        <p>Minutes</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="countdown-seconds">00</span>
+                        <p>Seconds</p>
+                    </div>
+                </div>
+            </section>
+
             <section class="winners-section">
                 <h2>Recent Winners</h2>
                 <ul class="winners-list">
@@ -587,11 +546,36 @@
         </div>
     </div>
 
+    <div class="modal-overlay" id="howItWorksModal">
+        <div class="modal-content">
+            <span class="close-button" data-close-modal="how-it-works">&times;</span>
+            <div id="modal-body-how-it-works">
+                <h2>How It Works</h2>
+                <ul class="how-it-works-list">
+                    <li data-step="1">
+                        <h3>Choose Your Card</h3>
+                        <p>Select your favorite gift card from the options on the main page.</p>
+                    </li>
+                    <li data-step="2">
+                        <h3>Complete an Offer</h3>
+                        <p>Complete one of the simple, free offers from our sponsors. This helps us fund the giveaways.</p>
+                    </li>
+                    <li data-step="3">
+                        <h3>Enter Your Email</h3>
+                        <p>After completing the offer, you'll be redirected to a new page to enter your email for the drawing.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <script>
         const cards = document.querySelectorAll('.card');
         const lockerModal = document.getElementById('lockerModal');
+        const howItWorksModal = document.getElementById('howItWorksModal');
         const closeButtons = document.querySelectorAll('.close-button');
         const searchInput = document.getElementById('searchInput');
+        const howItWorksButton = document.getElementById('howItWorksButton');
         const lockerPlaceholder = document.querySelector('.content-locker-placeholder');
 
         let lockerScriptLoaded = false;
@@ -617,12 +601,19 @@
             });
         });
 
+        // Modal functionality for "How It Works"
+        howItWorksButton.addEventListener('click', () => {
+            howItWorksModal.classList.add('active');
+        });
+
         // Close button functionality for all modals
         closeButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const modalType = button.dataset.closeModal;
                 if (modalType === 'locker') {
                     lockerModal.classList.remove('active');
+                } else if (modalType === 'how-it-works') {
+                    howItWorksModal.classList.remove('active');
                 }
             });
         });
@@ -649,17 +640,35 @@
             });
         });
 
-        // New Countdown Timer Script
+        // New Countdown Timer Script (for Wednesday and Saturday)
         function updateCountdown() {
-            const now = new Date().getTime();
-            // Start the cycle from a fixed date (e.g., midnight UTC on Jan 1, 2024)
-            const startDate = new Date('Jan 1, 2024 00:00:00 GMT+0000').getTime();
-            const timeElapsed = now - startDate;
+            const now = new Date();
+            const dayOfWeek = now.getDay(); // Sunday - 0, Monday - 1, ..., Saturday - 6
+            const nextDrawing = new Date(now);
 
-            // Calculate milliseconds for one giveaway cycle (3 days)
-            const cycleDuration = 3 * 24 * 60 * 60 * 1000;
-            const timeIntoCycle = timeElapsed % cycleDuration;
-            const timeRemaining = cycleDuration - timeIntoCycle;
+            // Determine the next drawing day: Wednesday (3) or Saturday (6)
+            let daysUntilNextDrawing = 0;
+            if (dayOfWeek < 3) {
+                // If today is Mon or Tue, target Wednesday
+                daysUntilNextDrawing = 3 - dayOfWeek;
+            } else if (dayOfWeek === 3 && now.getHours() < 21) {
+                // If today is Wednesday and it's before 9 PM, target today
+                daysUntilNextDrawing = 0;
+            } else if (dayOfWeek < 6) {
+                // If today is after Wednesday but before Saturday, target Saturday
+                daysUntilNextDrawing = 6 - dayOfWeek;
+            } else if (dayOfWeek === 6 && now.getHours() < 21) {
+                // If today is Saturday and it's before 9 PM, target today
+                daysUntilNextDrawing = 0;
+            } else {
+                // If today is Saturday after 9 PM or Sunday, target next Wednesday
+                daysUntilNextDrawing = (7 - dayOfWeek) + 3;
+            }
+            
+            nextDrawing.setDate(now.getDate() + daysUntilNextDrawing);
+            nextDrawing.setHours(21, 0, 0, 0); // Set time to 9 PM (21:00)
+
+            const timeRemaining = nextDrawing.getTime() - now.getTime();
 
             // Calculate days, hours, minutes, and seconds
             const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
