@@ -70,12 +70,12 @@
 
         #howItWorksButton {
             position: absolute;
-            top: 22px;
-            left: 25px;
+            top: 25px;
+            right: 25px;
             background: none;
             border: none;
             color: var(--text-color);
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             cursor: pointer;
             transition: color 0.3s ease;
         }
@@ -569,7 +569,7 @@
 
         let lockerScriptLoaded = false;
         let scrollInterval;
-        let scrollDirection = 1;
+        const scrollSpeed = 0.5; // Adjust this value to change scroll speed
 
         function loadLockerScript() {
             if (lockerScriptLoaded) {
@@ -625,24 +625,27 @@
             });
         });
 
-        // Auto-scrolling for winners list (will not stop)
+        // Auto-scrolling for winners list (continuous loop)
+        const originalListContent = winnersList.innerHTML;
+        winnersList.innerHTML += originalListContent; // Duplicate the content
+
         function startAutoScroll() {
             if (scrollInterval) return;
             scrollInterval = setInterval(() => {
-                const scrollWidth = winnersList.scrollWidth - winnersList.clientWidth;
-                winnersList.scrollLeft += scrollDirection;
+                const itemWidth = winnersList.querySelector('.winner-item').offsetWidth + 20; // Width + gap
+                const totalOriginalWidth = itemWidth * (winnersList.children.length / 2);
 
-                if (winnersList.scrollLeft >= scrollWidth) {
-                    scrollDirection = -1;
-                } else if (winnersList.scrollLeft <= 0) {
-                    scrollDirection = 1;
+                winnersList.scrollLeft += scrollSpeed;
+                
+                // If we've scrolled past the original content, instantly reset to the beginning
+                if (winnersList.scrollLeft >= totalOriginalWidth) {
+                    winnersList.scrollLeft = 0;
                 }
-            }, 20);
+            }, 10);
         }
 
-        // Start scrolling on page load
         startAutoScroll();
-
+        
     </script>
 </body>
 </html>
