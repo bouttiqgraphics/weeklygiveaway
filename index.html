@@ -413,8 +413,9 @@
 
         <main>
             <div class="hero">
-                <h1>Win Your Favorite Gift Card Today!</h1>
-                <p>Choose your card and complete a simple offer to get started.</p>
+                <h1>The Weekly Gift Card Giveaway</h1>
+                <p>New winners are announced every single week. Enter for a chance to win the card you want!</p>
+                <p class="trust-text">Our giveaways are 100% real, funded by our valued sponsors, and always free to enter. We draw new winners every Saturday and will notify you via email if you win.</p>
             </div>
 
             <div class="cards-grid">
@@ -453,7 +454,7 @@
             </div>
 
             <section class="winners-section">
-                <h2>Recent Winners</h2>
+                <h2>Last Week's Winners 🎉</h2>
                 <ul class="winners-list">
                     <li class="winner-item">
                         <h4>Jane D.</h4>
@@ -526,6 +527,7 @@
                 <div class="content-locker-placeholder">
                 </div>
             </div>
+            <button class="cta-button">Join the Weekly Giveaway</button>
         </div>
     </div>
 
@@ -536,8 +538,8 @@
                 <h2>Giveaway Info & How It Works</h2>
                 <div class="how-it-works-info">
                     <h3>Giveaway Schedule</h3>
-                    <p>New winners are drawn **every Wednesday and Saturday**.</p>
-                    <p>5 lucky winners are selected for each drawing!</p>
+                    <p>New winners are drawn **every Saturday**.</p>
+                    <p>We'll notify winners via email, so be sure to enter a valid address!</p>
                 </div>
                 <ul class="how-it-works-list">
                     <li data-step="1">
@@ -545,12 +547,12 @@
                         <p>Select your favorite gift card from the options on the main page.</p>
                     </li>
                     <li data-step="2">
-                        <h3>Complete an Offer</h3>
-                        <p>Complete one of the simple, free offers from our sponsors. This helps us fund the giveaways.</p>
+                        <h3>Complete a Simple Offer</h3>
+                        <p>Complete one of the simple, free offers from our sponsors. This helps us fund the giveaways and ensures we can keep giving away cards every week!</p>
                     </li>
                     <li data-step="3">
                         <h3>Enter Your Email</h3>
-                        <p>After completing the offer, you'll be redirected to a new page to enter your email for the drawing.</p>
+                        <p>Once your entry is complete, you'll be redirected to a new page to enter your email for the weekly drawing.</p>
                     </li>
                 </ul>
             </div>
@@ -566,6 +568,7 @@
         const howItWorksButton = document.getElementById('howItWorksButton');
         const lockerPlaceholder = document.querySelector('.content-locker-placeholder');
         const winnersList = document.querySelector('.winners-list');
+        const ctaButton = document.querySelector('.cta-button');
 
         let lockerScriptLoaded = false;
         let scrollInterval;
